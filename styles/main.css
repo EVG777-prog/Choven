@@ -675,13 +675,23 @@ section {
 }
 .teachers-grid {
   margin-top: 32px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
   gap: 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
   position: relative;
   z-index: 2;
+
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.teachers-grid::-webkit-scrollbar {
+  display: none;
 }
 .teacher-card {
+  flex: 0 0 var(--card-w, 320px);
+  scroll-snap-align: start;
   background: #fff;
   border-radius: var(--radius-md);
   padding: 14px;
@@ -690,17 +700,14 @@ section {
 .teacher-photo {
   border-radius: var(--radius-sm);
   height: 280px;
-  background: linear-gradient(150deg, #cfa9b0, #8f6a78);
+  overflow: hidden;
   position: relative;
 }
-.teacher-photo .ph-label {
-  position: absolute;
-  inset: auto 10px 10px 10px;
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.85);
-  background: rgba(0, 0, 0, 0.3);
-  padding: 6px 8px;
-  border-radius: 6px;
+.teacher-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 .teacher-info {
   padding: 16px 8px 8px;

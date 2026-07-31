@@ -523,7 +523,11 @@
         <div class="teachers-grid">
           <div class="teacher-card">
             <div class="teacher-photo">
-              <span class="ph-label">Фото викладачки Інна</span>
+              <img
+                src="../assets/teachers/teacher_french_1.webp"
+                alt="Photo of Inna"
+                onload="handleImageLoad()"
+              />
             </div>
             <div class="teacher-info">
               <div class="teacher-name">
@@ -543,7 +547,11 @@
           </div>
           <div class="teacher-card">
             <div class="teacher-photo">
-              <span class="ph-label">Фото викладачки Оксана</span>
+              <img
+                src="../assets/teachers/teacher_french_2.webp"
+                alt="Photo of Oksana"
+                onload="handleImageLoad()"
+              />
             </div>
             <div class="teacher-info">
               <div class="teacher-name">
@@ -563,7 +571,11 @@
           </div>
           <div class="teacher-card">
             <div class="teacher-photo">
-              <span class="ph-label">Фото викладачки Катерина</span>
+              <img
+                src="../assets/teachers/teacher_french_3.webp"
+                alt="Photo of Katerina"
+                onload="handleImageLoad()"
+              />
             </div>
             <div class="teacher-info">
               <div class="teacher-name">
@@ -578,6 +590,31 @@
                 та педагогічну практику у Польщі. Можу допомогти зробити
                 вивчення мови легким, цікавим, а також допоможу подолати мовний
                 бар'єр.
+              </p>
+            </div>
+          </div>
+          <div class="teacher-card">
+            <div class="teacher-photo">
+              <img
+                src="../assets/teachers/teacher_french_4.webp"
+                alt="Photo of Margarita"
+                onload="handleImageLoad()"
+              />
+            </div>
+            <div class="teacher-info">
+              <div class="teacher-name">
+                Маргарита
+                <span class="flag"
+                  ><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg
+                ></span>
+              </div>
+              <p class="teacher-bio">
+                Вивчаю мову зі школи і не припиняю продовжувати вивчення досі. Я
+                закінчила лінгвістичний університет. На заняттях особливу увагу
+                приділяю комфорту, тому до кожного учня знаходжу особливий
+                підхід. Спілкування з людьми надає мені крила і мотивує
+                створювати цікаві заняття. Я вважаю, мова - це про пізнання та
+                удосконалення себе.
               </p>
             </div>
           </div>
@@ -1132,9 +1169,25 @@
         btn.addEventListener('click', () => {
           if (!tGrid) return;
           const dir = i === 0 ? -1 : 1;
-          tGrid.scrollBy({ left: dir * 340, behavior: 'smooth' });
+          const step = parseFloat(tGrid.dataset.step) || 340;
+          tGrid.scrollBy({ left: dir * step, behavior: 'smooth' });
         });
       });
     </script>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.emailjs.com/dist/email.min.js"
+    ></script>
+    <!-- <script src="scripts/saveUTM.js"></script> -->
+    <!-- <script src="scripts/burger-menu.js"></script> -->
+    <!-- <script src="scripts/sign-up.js"></script> -->
+    <!-- <script src="scripts/floating-buttons.js"></script> -->
+
+    <script src="data/settings.js"></script>
+    <script src="scripts/getDataGoogleSheet.js"></script>
+    <script src="scripts/rates.js"></script>
+    <script src="scripts/teachers.js"></script>
+    <!-- <script src="scripts/schedule.js"></script> -->
   </body>
 </html>
