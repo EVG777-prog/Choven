@@ -1,9 +1,9 @@
 // заполнение учителей
 const teachersContainer = document.querySelector('.teachers-grid');
 // const teachersSection = document.querySelector('.teachers');
-// const modalVideoContainer = document.querySelector('#video-modal');
-// const iframe = modalVideoContainer.querySelector('#videoIframe');
-// const closeModalButton = modalVideoContainer.querySelector('.close');
+const modalVideoContainer = document.querySelector('#video-modal');
+const iframe = modalVideoContainer.querySelector('#videoIframe');
+const closeModalButton = modalVideoContainer.querySelector('.close');
 
 document.addEventListener('DOMContentLoaded', async (event) => {
   const teachers = await getTeachers('Чеська');
@@ -15,21 +15,21 @@ document.addEventListener('DOMContentLoaded', async (event) => {
   window.addEventListener('resize', fitTeacherCards);
 
   // Обработчик для закрытия модального окна
-  // closeModalButton.addEventListener('click', () => closeVideoModal());
+  closeModalButton.addEventListener('click', () => closeVideoModal());
 
   // Закрытие модального окна при клике вне его содержимого
-  // document.querySelector('#video-modal').addEventListener('click', (event) => {
-  //   if (event.target === event.currentTarget) {
-  //     closeVideoModal();
-  //   }
-  // });
+  document.querySelector('#video-modal').addEventListener('click', (event) => {
+    if (event.target === event.currentTarget) {
+      closeVideoModal();
+    }
+  });
 });
 
-// function closeVideoModal() {
-//   modalVideoContainer.style.display = 'none';
-//   iframe.src = ''; // Останавливаем видео
-//   document.body.style.overflow = 'auto'; // Включаем прокрутку основного контента
-// }
+function closeVideoModal() {
+  modalVideoContainer.style.display = 'none';
+  iframe.src = ''; // Останавливаем видео
+  document.body.style.overflow = 'auto'; // Включаем прокрутку основного контента
+}
 
 function showTeachers(teachers) {
   teachersContainer.innerHTML = '';
@@ -87,12 +87,12 @@ function fitTeacherCards() {
   grid.dataset.step = cardWidth + gap; // сохраняем шаг для стрелок
 }
 
-// function showTeacherVideo(link) {
-//   console.log('Show YouTube Video', link);
-//   const modalVideoContainer = document.querySelector('#video-modal');
-//   var iframe = document.getElementById('videoIframe');
+function showTeacherVideo(link) {
+  console.log('Show YouTube Video', link);
+  const modalVideoContainer = document.querySelector('#video-modal');
+  var iframe = document.getElementById('videoIframe');
 
-//   iframe.src = link.includes('?') ? `${link}&autoplay=1` : `${link}?autoplay=1`;
+  iframe.src = link.includes('?') ? `${link}&autoplay=1` : `${link}?autoplay=1`;
 
-//   modalVideoContainer.style.display = 'block';
-// }
+  modalVideoContainer.style.display = 'block';
+}
