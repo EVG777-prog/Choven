@@ -1,0 +1,126 @@
+/* ================= BREADCRUMBS ================= */
+.breadcrumbs {
+  max-width: var(--wrap);
+  margin: 32px auto 0;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.breadcrumbs a {
+  color: var(--muted);
+  text-decoration: none;
+}
+.breadcrumbs a:hover {
+  color: var(--teal);
+}
+.breadcrumbs .sep {
+  color: #cfd6d5;
+}
+.breadcrumbs .current {
+  color: #1c1c1c;
+}
+
+/* ================= PAYMENT PAGE ================= */
+.payment-page {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 24px 24px 100px;
+}
+
+.payment-head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 8px 0 32px;
+}
+.payment-head h1 {
+  font-size: 34px;
+  font-weight: 800;
+  color: #1c1c1c;
+}
+.payment-note {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.payment-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.payment-card {
+  background: #fff;
+  border: 1px solid #eceeed;
+  border-radius: var(--radius-md);
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.payment-card .blob {
+  position: absolute;
+  top: -30px;
+  right: -30px;
+  width: 160px;
+  height: 160px;
+  opacity: 0.6;
+  z-index: 0;
+}
+.payment-card h3,
+.payment-card .payment-sub,
+.payment-card .payment-count,
+.payment-card .payment-row {
+  position: relative;
+  z-index: 1;
+}
+.payment-card h3 {
+  font-size: 17px;
+  font-weight: 800;
+  color: #1c1c1c;
+}
+.payment-sub {
+  margin-top: 4px;
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.payment-count {
+  margin-top: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #1c1c1c;
+}
+.payment-row {
+  margin-top: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.payment-price {
+  font-size: 20px;
+  font-weight: 800;
+  color: #1c1c1c;
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 960px) {
+  .payment-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 620px) {
+  .payment-grid {
+    grid-template-columns: 1fr;
+  }
+  .payment-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .payment-head h1 {
+    font-size: 26px;
+  }
+}
