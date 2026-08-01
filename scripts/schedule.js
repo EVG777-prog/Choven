@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", async (event) => {
   // заполнение тарифов
-  const scheduleSection = document.querySelector(".schedule-section");
+  const scheduleSection = document.querySelector(".schedule");
   const scheduleContainer = scheduleSection.querySelector(
     ".schedule-container"
   );
