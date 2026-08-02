@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/faq.css" />
+    <link rel="stylesheet" href="../styles/booking-modal.css" />
   </head>
   <body>
     <!-- ================= HEADER ================= -->
@@ -375,6 +376,93 @@
       </div>
     </footer>
 
+    <!-- ================= BOOKING MODAL ================= -->
+    <div class="modal-overlay" id="booking-modal" aria-hidden="true">
+      <div
+        class="modal-booking"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="booking-modal-title"
+      >
+        <button
+          class="modal-close"
+          type="button"
+          aria-label="Закрити"
+          data-close-modal
+        >
+          &times;
+        </button>
+
+        <h3 id="booking-modal-title">Записатися на пробний урок</h3>
+
+        <form class="booking-form" id="booking-form" novalidate>
+          <div class="booking-row">
+            <div class="booking-field" data-field="name">
+              <label for="booking-name"
+                >Ваше ім'я<span class="req">*</span></label
+              >
+              <input
+                type="text"
+                id="booking-name"
+                name="name"
+                placeholder="Введіть ваше ім'я"
+                required
+              />
+            </div>
+            <div class="booking-field" data-field="contact">
+              <label for="booking-contact"
+                >Ваш телефон або нік в Telegram<span class="req">*</span></label
+              >
+              <input
+                type="text"
+                id="booking-contact"
+                name="contact"
+                placeholder="Введіть ваші контактні дані"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="booking-field" data-field="level">
+            <label for="booking-level"
+              >Ви раніше вивчали чеську мову?<span class="req">*</span></label
+            >
+            <div class="booking-select-wrap">
+              <select id="booking-level" name="level" required>
+                <option value="none" selected>Ні, потрібно з нуля</option>
+                <option value="basic">Так, базовий рівень (A1–A2)</option>
+                <option value="intermediate">
+                  Так, середній рівень (B1–B2)
+                </option>
+                <option value="advanced">
+                  Так, високий рівень (C1 і вище)
+                </option>
+              </select>
+              <svg
+                class="booking-select-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path d="m6 9 6 6 6-6" />
+              </svg>
+            </div>
+          </div>
+
+          <p class="booking-agreement">
+            *Натискаючи на кнопку "Залишити заявку" ви погоджуєтеся з умовами
+            <a href="#" target="_blank" rel="noopener">Публічної оферти</a>
+          </p>
+
+          <button type="submit" class="btn btn-orange booking-submit">
+            Залишити заявку
+          </button>
+        </form>
+      </div>
+    </div>
+
     <script>
       // mobile burger toggles nav + actions as a dropdown panel
       document.querySelector('.burger')?.addEventListener('click', function () {
@@ -396,5 +484,12 @@
         });
       });
     </script>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.emailjs.com/dist/email.min.js"
+    ></script>
+
+    <script src="../scripts/booking-modal.js"></script>
   </body>
 </html>
