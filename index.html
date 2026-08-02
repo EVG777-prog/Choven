@@ -13,6 +13,7 @@
 
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="stylesheet" href="styles/booking-modal.css" />
+    <link rel="stylesheet" href="styles/schedule.css" />
   </head>
   <body>
     <!-- ================= HEADER ================= -->
@@ -647,8 +648,8 @@
         </p>
       </div>
       <div class="schedule-filters">
-        <div class="select-fake">
-          Будь-який час
+        <div class="select-wrap">
+          <select id="filter-time"></select>
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -658,8 +659,8 @@
             <path d="m6 9 6 6 6-6" />
           </svg>
         </div>
-        <div class="select-fake">
-          Всі рівні
+        <div class="select-wrap">
+          <select id="filter-level"></select>
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -670,7 +671,7 @@
           </svg>
         </div>
       </div>
-      <div class="schedule-grid">
+      <div class="schedule-grid" id="schedule-grid">
         <div class="group-card">
           <div
             class="blob"
@@ -1292,6 +1293,6 @@
     <script src="scripts/rates.js"></script>
     <script src="scripts/booking-modal.js"></script>
     <script src="scripts/teachers.js"></script>
-    <!-- <script src="scripts/schedule.js"></script> -->
+    <script src="scripts/schedule.js"></script>
   </body>
 </html>

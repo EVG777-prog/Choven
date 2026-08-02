@@ -1,303 +1,259 @@
-document.addEventListener("DOMContentLoaded", async (event) => {
-  // заполнение тарифов
-  const scheduleSection = document.querySelector(".schedule");
-  const scheduleContainer = scheduleSection.querySelector(
-    ".schedule-container"
+// ================= SCHEDULE (groups) =================
+
+const SCHEDULE_TIME_FILTER_LABELS = {
+  all: 'Будь-який час',
+  morning: 'Ранковий час (до 12)',
+  day: 'Денний час (12–17)',
+  evening: 'Вечірній час (після 17)',
+};
+const SCHEDULE_TIME_FILTER_ORDER = ['morning', 'day', 'evening'];
+
+const SCHEDULE_LEVEL_ORDER = ['з нуля', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+
+const SCHEDULE_LEVEL_BADGE_CLASS = {
+  'з нуля': 'status-free',
+  A1: 'status-a',
+  A2: 'status-a',
+  B1: 'status-b',
+  B2: 'status-b',
+  C1: 'status-c',
+  C2: 'status-c',
+};
+
+const scheduleFilterState = {
+  time: 'all',
+  level: 'all',
+};
+
+let scheduleAllLessons = [];
+let scheduleAllRates = [];
+
+// --- helpers -------------------------------------------------------------
+
+// Pulls the first HH:MM out of a schedule string like "ВТ, ПТ 10:40"
+// and buckets it into a time-of-day category.
+function scheduleCategorizeTime(scheduleStr) {
+  const match = (scheduleStr || '').match(/(\d{1,2}):(\d{2})/);
+  if (!match) return null;
+
+  const hours = parseInt(match[1], 10);
+  if (hours < 12) return 'morning';
+  if (hours < 17) return 'day';
+  return 'evening';
+}
+
+// Normalizes level text so "a1", "A1", " A1 " all match the same bucket,
+// while keeping the original casing for display.
+function scheduleNormalizeLevel(levelStr) {
+  return (levelStr || '').trim();
+}
+
+function scheduleLevelKey(levelStr) {
+  return scheduleNormalizeLevel(levelStr).toLowerCase();
+}
+
+function scheduleMatchesFilters(row, excludeKey) {
+  if (excludeKey !== 'level' && scheduleFilterState.level !== 'all') {
+    if (scheduleLevelKey(row.level) !== scheduleFilterState.level.toLowerCase())
+      return false;
+  }
+  if (excludeKey !== 'time' && scheduleFilterState.time !== 'all') {
+    if (scheduleCategorizeTime(row.schedule) !== scheduleFilterState.time)
+      return false;
+  }
+  return true;
+}
+
+function scheduleFindRate(rateName) {
+  return scheduleAllRates.find(
+    (r) =>
+      (r.name || '').trim().toLowerCase() ===
+      (rateName || '').trim().toLowerCase()
   );
-  const showMoreLessonsButton =
-    scheduleSection.querySelector(".show-more-lessons");
-  const selectedTimeInput = scheduleSection.querySelector("#selectedTime");
-  const selectLevelInput = scheduleSection.querySelector("#selectedLevel");
+}
 
-  const pageTitle = document.title;
+// --- filter rendering ------------------------------------------------------
 
-  const schedule = await getLessons(pageTitle);
+function scheduleRenderTimeFilter() {
+  const select = document.getElementById('filter-time');
+  if (!select) return;
 
-  console.log(schedule);
+  const available = new Set();
+  scheduleAllLessons.forEach((row) => {
+    if (!scheduleMatchesFilters(row, 'time')) return;
+    const cat = scheduleCategorizeTime(row.schedule);
+    if (cat) available.add(cat);
+  });
 
-  const teachers = await getTeachers(pageTitle);
-
-  let rates;
-
-  // Если расписания нет, скрываем секцию
-  if (!schedule.length) {
-    scheduleSection.style.display = "none";
-  } else {
-    // Получаем все кастомные селекты
-    const customSelects = document.querySelectorAll(
-      ".schedule-section .custom-select"
-    );
-
-    fillOptionsSelect();
-
-    customSelects.forEach(function (customSelect) {
-      const selectedValue = customSelect.querySelector(".selected-value");
-      const valueList = customSelect.querySelector(".value-list");
-      const hiddenInput = customSelect.querySelector("input[type=hidden]"); // Предполагается, что у каждого селекта есть свой скрытый input
-
-      // Обработчик клика по выбранному значению
-      selectedValue.addEventListener("click", function () {
-        customSelect.classList.toggle("open");
-        valueList.classList.toggle("hidden");
-      });
-
-      // Обработчик клика по элементу списка
-      valueList.addEventListener("click", function (e) {
-        if (e.target.tagName.toLowerCase() === "li") {
-          selectedValue.textContent = e.target.textContent;
-          selectedValue.dataset.value = e.target.dataset.value;
-          hiddenInput.value = e.target.dataset.value; // Обновляем значение скрытого input
-          showLessons(schedule);
-          customSelect.classList.remove("open");
-          valueList.classList.add("hidden");
-        }
-      });
-    });
-
-    // Закрытие всех открытых списков при клике вне селектов
-    document.addEventListener("click", function (e) {
-      customSelects.forEach(function (customSelect) {
-        var valueList = customSelect.querySelector(".value-list");
-        if (!customSelect.contains(e.target)) {
-          customSelect.classList.remove("open");
-          valueList.classList.add("hidden");
-        }
-      });
-    });
-
-    setTimeout(async () => {
-      rates = await getRates();
-      showLessons(schedule); // Иначе добавляем лекции в DOM
-    }, 100);
-
-    // Получаем все кнопки, которые открывают модальное окно
-
-    showMoreLessonsButton.addEventListener("click", () => {
-      // Проверяем, раскрыт ли контейнер
-      if (scheduleContainer.classList.contains("expanded")) {
-        // showLessons(schedule);
-        scheduleContainer.classList.remove("expanded");
-        showMoreLessonsButton.textContent = "Більше";
-        setHeightContainer();
-      } else {
-        // Раскрываем контейнер
-        // showLessons(schedule);
-        scheduleContainer.classList.add("expanded");
-        showMoreLessonsButton.textContent = "Приховати";
-        setHeightContainer();
-      }
-    });
-  }
-  // использование с локальными данными
-  function showLessons(schedule) {
-    const screenWidth = window.innerWidth;
-
-    // Получаем модальное окно
-    const modal = document.getElementById("myModal");
-
-    const time = selectedTimeInput.value;
-    const level = selectLevelInput.value;
-    let lessons = [...schedule];
-
-    if (level !== "any")
-      lessons = lessons.filter((lesson) => lesson.level.includes(level));
-
-    if (time !== "any") {
-      lessons = lessons.filter((lesson) => {
-        const timeLesson = parseInt(
-          lesson.schedule.substring(
-            lesson.schedule.indexOf(":") - 2,
-            lesson.schedule.indexOf(":")
-          )
-        );
-        if (time === "Ранковий час" && timeLesson < 12) {
-          return true;
-        } else if (
-          time === "Денний час" &&
-          timeLesson >= 12 &&
-          timeLesson < 17
-        ) {
-          return true;
-        } else if (time === "Вечірній час" && timeLesson >= 17) {
-          return true;
-        }
-        return false;
-      });
-    }
-
-    scheduleContainer.innerHTML = "";
-
-    const textNoLessonsWarning = document.querySelector(".no-lessons-warning");
-
-    console.log(textNoLessonsWarning);
-
-    textNoLessonsWarning.style.display = lessons.length == 0 ? "block" : "none";
-
-    console.log(textNoLessonsWarning);
-
-    let countColumns = 4;
-
-    if (screenWidth < 716) {
-      countColumns = 1;
-    } else if ((screenWidth >= 716) & (screenWidth < 1076)) {
-      countColumns = 2;
-    } else if ((screenWidth >= 1076) & (screenWidth < 1436)) {
-      countColumns = 3;
-    } else if ((screenWidth >= 1436) & (screenWidth < 1797)) {
-      countColumns = 4;
-    } else {
-      countColumns = 5;
-    }
-
-    for (i = 0; i < countColumns; i++) {
-      const scheduleColumn = document.createElement("div");
-      scheduleColumn.classList.add("schedule-column");
-      scheduleContainer.appendChild(scheduleColumn);
-    }
-
-    const scheduleColumns =
-      scheduleSection.querySelectorAll(".schedule-column");
-
-    lessons.forEach((lesson, i) => {
-      const lessonElement = document.createElement("div");
-      lessonElement.classList.add("schedule-card");
-      lessonElement.classList.add(
-        `${lesson.level === "з нуля" ? "zero" : lesson.level}`
-      );
-
-      const rate = rates.filter((rate) => rate.name === lesson.rate)[0];
-      const rateText = rate
-        ? `${rate.price} грн/${rate.quantity} уроків`
-        : lesson.rate;
-
-      const teacher = teachers.filter(
-        (teacher) => teacher.name === lesson.teacher
-      )[0];
-
-      const link = teacher.link
-        ? ` <button class="youtube-button" onclick="showTeacherVideo('${teacher.link}')">
-                <img src="../assets/icons/icon_play.svg" alt="Icon" class="icon-play"/>
-           </button>`
-        : "";
-
-      lessonElement.innerHTML = `
-            <span class="schedule-card_start">${
-              lesson.timeStart ? `Старт: ${lesson.timeStart}` : ""
-            }</span>
-            <span class="schedule-card_level">${lesson.level}</span>
-            <div class="schedule-card_info-container flex-row">
-              <div class="schedule-card_info-headers">
-                <p class="schedule-card_schedule">Розклад:</p>
-                <p class="schedule-card_teacher">Викладач:</p>
-                <p class="schedule-card_rate">Вартість:</p>
-              </div>
-              <div class="schedule-card_info-data">
-                <p class="schedule-card_schedule">${lesson.schedule}</p>
-                <p class="schedule-card_teacher">${lesson.teacher} ${link}</p>
-                <p class="schedule-card_rate">${rateText}</p></div>
-              </div>
-            </div>
-            <button class="order">Записатися</button>
-            <button class="show-more"></button>
-            `;
-
-      scheduleColumns[i % countColumns].appendChild(lessonElement);
-    });
-
-    const showButtons = scheduleContainer.querySelectorAll(".show-more");
-
-    showButtons.forEach((showButton) =>
-      showButton.addEventListener("click", function () {
-        const scheduleCard = this.closest(".schedule-card");
-        scheduleCard.classList.toggle("additional-info");
-        setHeightContainer();
-      })
-    );
-
-    const btns = document.querySelectorAll(".schedule-section .order");
-
-    // Добавляем обработчик событий для каждой кнопки
-    btns.forEach(function (btn) {
-      btn.onclick = function () {
-        const scheduleCard = btn.closest(".schedule-card");
-
-        console.log(scheduleCard);
-
-        const level = scheduleCard.querySelector(
-          ".schedule-card_level"
-        ).textContent;
-        const schedule = scheduleCard.querySelector(
-          ".schedule-card_info-data .schedule-card_schedule"
-        ).textContent;
-        const teacher = scheduleCard.querySelector(
-          ".schedule-card_info-data .schedule-card_teacher"
-        ).textContent;
-        const rate = scheduleCard.querySelector(
-          ".schedule-card_info-data .schedule-card_rate"
-        ).textContent;
-
-        const data = `${level} ${schedule} ${teacher} ${rate}`;
-
-        modal.dataset.lesson = data;
-
-        modal.style.display = "block";
-        modal.classList.add("schedule");
-        document.body.classList.add("no-scroll");
-      };
-    });
-
-    if (screenWidth <= 715) {
-      showMoreLessonsButton.style.display =
-        lessons.length > 10 ? "block" : "none";
-
-      setHeightContainer();
-    }
+  if (
+    scheduleFilterState.time !== 'all' &&
+    !available.has(scheduleFilterState.time)
+  ) {
+    scheduleFilterState.time = 'all';
   }
 
-  function fillOptionsSelect() {
-    const selectLevelOptions = document.querySelector("#selectLevelOptions");
+  const options = [
+    'all',
+    ...SCHEDULE_TIME_FILTER_ORDER.filter((t) => available.has(t)),
+  ];
 
-    const uniqueLevels = [...new Set(schedule.map((obj) => obj.level))];
+  select.innerHTML = options
+    .map(
+      (val) =>
+        `<option value="${val}"${val === scheduleFilterState.time ? ' selected' : ''}>${SCHEDULE_TIME_FILTER_LABELS[val]}</option>`
+    )
+    .join('');
+}
 
-    console.log(uniqueLevels);
+function scheduleRenderLevelFilter() {
+  const select = document.getElementById('filter-level');
+  if (!select) return;
 
-    const listItemsHtml = uniqueLevels
-      .map((level) => `<li data-value="${level}">${level}</li>`)
-      .join("");
+  const availableRaw = new Map(); // lowercase key -> original display text
+  scheduleAllLessons.forEach((row) => {
+    if (!scheduleMatchesFilters(row, 'level')) return;
+    const raw = scheduleNormalizeLevel(row.level);
+    if (raw) availableRaw.set(raw.toLowerCase(), raw);
+  });
 
-    selectLevelOptions.innerHTML = `
-    <li data-value="any">Всі рівні</li>
-    ${listItemsHtml}
-    `;
+  if (
+    scheduleFilterState.level !== 'all' &&
+    !availableRaw.has(scheduleFilterState.level.toLowerCase())
+  ) {
+    scheduleFilterState.level = 'all';
   }
 
-  function setHeightContainer() {
-    // Получаем вычисленные стили контейнера
-    const computedStyles = window.getComputedStyle(
-      scheduleContainer.querySelector(".schedule-column")
-    );
+  // Order known levels first (in SCHEDULE_LEVEL_ORDER), then anything unexpected found in the sheet
+  const knownFound = SCHEDULE_LEVEL_ORDER.filter((l) =>
+    availableRaw.has(l.toLowerCase())
+  );
+  const knownKeys = new Set(knownFound.map((l) => l.toLowerCase()));
+  const extraFound = [...availableRaw.keys()]
+    .filter((k) => !knownKeys.has(k))
+    .map((k) => availableRaw.get(k));
 
-    // Получаем значение свойства gap
-    const gap = computedStyles.getPropertyValue("gap").replace(/\D/g, "");
+  const displayLevels = [...knownFound, ...extraFound];
 
-    let scheduleCards;
-    if (scheduleContainer.classList.contains("expanded")) {
-      scheduleCards = scheduleContainer.querySelectorAll(".schedule-card");
-    } else {
-      // Получаем первые 10 элементов с классом schedule-card
-      scheduleCards = scheduleContainer.querySelectorAll(
-        ".schedule-card:nth-of-type(-n+10)"
-      );
-    }
+  const optionsHtml = [
+    `<option value="all"${scheduleFilterState.level === 'all' ? ' selected' : ''}>Всі рівні</option>`,
+    ...displayLevels.map((lvl) => {
+      const label = lvl.toLowerCase() === 'з нуля' ? 'З нуля' : lvl;
+      const selected =
+        scheduleFilterState.level.toLowerCase() === lvl.toLowerCase()
+          ? ' selected'
+          : '';
+      return `<option value="${lvl}"${selected}>${label}</option>`;
+    }),
+  ];
 
-    // Инициализируем переменную для хранения высоты
-    let totalHeight = gap * (scheduleCards.length - 1);
+  select.innerHTML = optionsHtml.join('');
+}
 
-    // Итерируемся по первым 10 элементам и суммируем их высоту
-    scheduleCards.forEach((scheduleCard) => {
-      totalHeight += scheduleCard.getBoundingClientRect().height;
-    });
+// --- card rendering ---------------------------------------------------------
 
-    scheduleContainer.style.maxHeight = `${totalHeight}px`;
+function scheduleRenderGroupCards() {
+  const grid = document.getElementById('schedule-grid');
+  if (!grid) return;
+
+  const filtered = scheduleAllLessons.filter((row) =>
+    scheduleMatchesFilters(row, null)
+  );
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `<p class="schedule-empty">Групи за цими фільтрами не знайдені.</p>`;
+    return;
   }
+
+  grid.innerHTML = filtered
+    .map((row) => {
+      const title = row.groupNumber ? `Група ${row.groupNumber}` : `Група`;
+
+      const badgeClass =
+        SCHEDULE_LEVEL_BADGE_CLASS[scheduleNormalizeLevel(row.level)] ||
+        'status-a';
+      const isFromScratch = row.level.toLowerCase() === 'з нуля';
+      const badgeLabel = isFromScratch
+        ? row.timeStart
+          ? `З нуля (старт ${row.timeStart})`
+          : 'З нуля'
+        : scheduleNormalizeLevel(row.level);
+
+      const rate = scheduleFindRate(row.rate);
+      const priceLine = rate
+        ? `${rate.price} грн. / ${rate.quantity} уроків`
+        : row.rate || '—';
+
+      // start date is already folded into the badge for "з нуля" groups;
+      // for other levels with a start date, still show it as a separate row
+      const startLine =
+        row.timeStart && !isFromScratch
+          ? `<li><span class="dot"></span>Старт: <b>${row.timeStart}</b></li>`
+          : '';
+
+      return `
+        <div class="group-card">
+          <div class="blob" style="bottom: -20px; right: -20px; width: 100px; height: 100px">
+            <svg viewBox="0 0 200 200">
+              <circle cx="100" cy="100" r="90" fill="#e7ebea" />
+            </svg>
+          </div>
+          <div class="group-head">
+            <h4>${title}</h4>
+            <span class="status-pill ${badgeClass}">${badgeLabel}</span>
+          </div>
+          <ul class="group-rows">
+            <li><span class="dot"></span>Розклад: <b>${row.schedule}</b></li>
+            <li><span class="dot"></span>Викладач: <b>${row.teacher}</b></li>
+            <li><span class="dot"></span>Вартість: <b>${priceLine}</b></li>
+            ${startLine}
+          </ul>
+          <a href="#booking" class="group-link"
+            >Записатись
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+        </div>
+      `;
+    })
+    .join('');
+}
+
+function scheduleRenderAll() {
+  scheduleRenderTimeFilter();
+  scheduleRenderLevelFilter();
+  scheduleRenderGroupCards();
+}
+
+// --- init ---------------------------------------------------------------
+
+document.addEventListener('DOMContentLoaded', async () => {
+  console.log('schedule init');
+  const grid = document.getElementById('schedule-grid');
+  console.log('schedule grid element:', grid);
+  if (!grid) {
+    console.warn('schedule.js: #schedule-grid not found — aborting');
+    return;
+  }
+
+  const [lessons, rates] = await Promise.all([
+    getLessons('Чеська'),
+    getRates(),
+  ]);
+  scheduleAllLessons = lessons || [];
+  scheduleAllRates = rates || [];
+
+  console.log('schedule lessons:', scheduleAllLessons);
+  console.log('schedule rates:', scheduleAllRates);
+
+  scheduleRenderAll();
+
+  document.getElementById('filter-time')?.addEventListener('change', (e) => {
+    scheduleFilterState.time = e.target.value;
+    scheduleRenderAll();
+  });
+  document.getElementById('filter-level')?.addEventListener('change', (e) => {
+    scheduleFilterState.level = e.target.value;
+    scheduleRenderAll();
+  });
 });

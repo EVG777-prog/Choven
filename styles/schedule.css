@@ -1,0 +1,49 @@
+/* ================= SCHEDULE FILTERS ================= */
+.schedule-filters {
+  display: flex;
+  gap: 12px;
+}
+
+.select-wrap {
+  position: relative;
+}
+.select-wrap select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+  height: 48px;
+  padding: 0 40px 0 18px;
+  border: 1px solid #e6e9e8;
+  border-radius: 999px;
+  background: #fff;
+  font-family: inherit;
+  font-size: 14.5px;
+  color: #1c1c1c;
+}
+.select-wrap select:focus {
+  outline: 2px solid var(--teal);
+  outline-offset: -2px;
+}
+.select-wrap svg {
+  position: absolute;
+  top: 50%;
+  right: 16px;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  color: #1c1c1c;
+}
+
+.status-pill.status-c {
+  background: var(--orange);
+  color: #fff;
+}
+
+.schedule-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px 0;
+  color: var(--muted);
+}

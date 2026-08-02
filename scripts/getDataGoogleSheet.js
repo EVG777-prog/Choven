@@ -26,6 +26,7 @@ function getSheduleArray(data) {
       schedule: lesson[1],
       teacher: lesson[2],
       rate: lesson[3],
+      groupNumber: lesson[5] ?? '',
     };
   });
 }
@@ -82,7 +83,7 @@ async function getLessons(pageTitle) {
       // Ваш код для получения данных, например, запрос к серверу
       const dataLessons = await getDataFromGoogleSheet(
         pageSheet,
-        'A2:E333',
+        'A2:F333',
         SHEET_ID
       );
       const data = getSheduleArray(dataLessons.values);
