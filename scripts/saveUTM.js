@@ -1,9 +1,9 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   // Инициализация EmailJS
-  emailjs.init("-sRJivwCLAK6_wDTd");
+  emailjs.init(EMAILJS_TOKEN);
 
   // Ключ для проверки отправки email
-  const EMAIL_SENT_KEY = "telegram_email_sent";
+  const EMAIL_SENT_KEY = 'telegram_email_sent';
 
   saveInitialParams();
 
@@ -12,12 +12,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Функция для получения UTM данных из localStorage
   function getUTMData() {
     const utmData = {
-      utm_source: localStorage.getItem("utm_source") || "",
-      utm_medium: localStorage.getItem("utm_medium") || "",
-      utm_campaign: localStorage.getItem("utm_campaign") || "",
-      utm_term: localStorage.getItem("utm_term") || "",
-      utm_content: localStorage.getItem("utm_content") || "",
-      utm_referrer: localStorage.getItem("utm_referrer") || "",
+      utm_source: localStorage.getItem('utm_source') || '',
+      utm_medium: localStorage.getItem('utm_medium') || '',
+      utm_campaign: localStorage.getItem('utm_campaign') || '',
+      utm_term: localStorage.getItem('utm_term') || '',
+      utm_content: localStorage.getItem('utm_content') || '',
+      utm_referrer: localStorage.getItem('utm_referrer') || '',
     };
 
     return utmData;
@@ -25,19 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Функция для проверки, было ли уже отправлено письмо
   function isEmailAlreadySent() {
-    return localStorage.getItem(EMAIL_SENT_KEY) === "true";
+    return localStorage.getItem(EMAIL_SENT_KEY) === 'true';
   }
 
   // Функция для отметки, что письмо отправлено
   function markEmailAsSent() {
-    localStorage.setItem(EMAIL_SENT_KEY, "true");
+    localStorage.setItem(EMAIL_SENT_KEY, 'true');
   }
 
   // Функция для отправки email с UTM данными
   function sendUTMEmail(linkUrl) {
     // Проверяем, было ли уже отправлено письмо
     if (isEmailAlreadySent()) {
-      console.log("Email уже был отправлен ранее");
+      console.log('Email уже был отправлен ранее');
       return;
     }
 
@@ -59,14 +59,14 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     // Отправка email через EmailJS
-    emailjs.send("service_cxrlixg", "template_vjb49ud", templateParams).then(
+    emailjs.send('service_cxrlixg', 'template_vjb49ud', templateParams).then(
       function (response) {
-        console.log("Email sent successfully!", response.status, response.text);
+        console.log('Email sent successfully!', response.status, response.text);
         // Отмечаем, что письмо отправлено
         markEmailAsSent();
       },
       function (error) {
-        console.error("Failed to send email:", error);
+        console.error('Failed to send email:', error);
       }
     );
   }
@@ -77,14 +77,14 @@ document.addEventListener("DOMContentLoaded", () => {
     event.preventDefault();
 
     const link = event.currentTarget;
-    const href = link.getAttribute("href");
+    const href = link.getAttribute('href');
 
     // Отправляем email с UTM данными
     sendUTMEmail(href);
 
     // Открываем ссылку Telegram после небольшой задержки
     setTimeout(() => {
-      window.open(href, "_blank");
+      window.open(href, '_blank');
     }, 100);
   }
 
@@ -92,11 +92,11 @@ document.addEventListener("DOMContentLoaded", () => {
   function initTelegramHandlers() {
     // Находим все ссылки с классом icon-telegram
     const telegramLinks = document.querySelectorAll(
-      ".contact__icon.icon-telegram"
+      '.contact__icon.icon-telegram'
     );
 
     telegramLinks.forEach((link) => {
-      link.addEventListener("click", handleTelegramClick);
+      link.addEventListener('click', handleTelegramClick);
     });
 
     console.log(`Initialized ${telegramLinks.length} Telegram link handlers`);
@@ -105,13 +105,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // Сохраняем UTM и реферер при первом визите
   function saveInitialParams() {
     const utmKeys = [
-      "utm_source",
-      "utm_medium",
-      "utm_campaign",
-      "utm_term",
-      "utm_content",
+      'utm_source',
+      'utm_medium',
+      'utm_campaign',
+      'utm_term',
+      'utm_content',
     ];
-    const refKey = "utm_referrer";
+    const refKey = 'utm_referrer';
 
     const params = new URLSearchParams(window.location.search);
 
