@@ -1,9 +1,5 @@
 // заполнение учителей
 const teachersContainer = document.querySelector('.teachers-grid');
-// const teachersSection = document.querySelector('.teachers');
-const modalVideoContainer = document.querySelector('#video-modal');
-const iframe = modalVideoContainer.querySelector('#videoIframe');
-const closeModalButton = modalVideoContainer.querySelector('.close');
 
 document.addEventListener('DOMContentLoaded', async (event) => {
   const teachers = await getTeachers('Чеська');
@@ -13,23 +9,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
   fitTeacherCards();
   window.addEventListener('resize', fitTeacherCards);
-
-  // Обработчик для закрытия модального окна
-  closeModalButton.addEventListener('click', () => closeVideoModal());
-
-  // Закрытие модального окна при клике вне его содержимого
-  document.querySelector('#video-modal').addEventListener('click', (event) => {
-    if (event.target === event.currentTarget) {
-      closeVideoModal();
-    }
-  });
 });
-
-function closeVideoModal() {
-  modalVideoContainer.style.display = 'none';
-  iframe.src = ''; // Останавливаем видео
-  document.body.style.overflow = 'auto'; // Включаем прокрутку основного контента
-}
 
 function showTeachers(teachers) {
   teachersContainer.innerHTML = '';
@@ -39,9 +19,9 @@ function showTeachers(teachers) {
     teacherElement.classList.add('teacher-card');
 
     const link = teacher.link
-      ? `  <span class="flag" onclick="showTeacherVideo('${teacher.link}')">
-              <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" /></svg>
-            </span>
+      ? `  <span class="yt-icon" onclick="showTeacherVideo('${teacher.link}')">
+             <img src="../assets/icons/icon_youtube.svg" alt="Відео" />
+           </span>
         `
       : '';
 
@@ -85,14 +65,4 @@ function fitTeacherCards() {
 
   grid.style.setProperty('--card-w', `${cardWidth}px`);
   grid.dataset.step = cardWidth + gap; // сохраняем шаг для стрелок
-}
-
-function showTeacherVideo(link) {
-  console.log('Show YouTube Video', link);
-  const modalVideoContainer = document.querySelector('#video-modal');
-  var iframe = document.getElementById('videoIframe');
-
-  iframe.src = link.includes('?') ? `${link}&autoplay=1` : `${link}?autoplay=1`;
-
-  modalVideoContainer.style.display = 'block';
 }
