@@ -7,7 +7,7 @@
 .reviews-title {
   font-size: 40px;
   font-weight: 800;
-  color: var(--grey-dark);
+  color: var(--onsurface);
   margin: 8px 0 32px;
 }
 .reviews-title .accent {
@@ -56,11 +56,11 @@
 .review-name {
   font-weight: 800;
   font-size: 15px;
-  color: var(--grey-dark);
+  color: var(--onsurface);
 }
 .review-level {
   font-size: 13px;
-  color: var(--grey-medium);
+  color: var(--grey-dark);
 }
 
 /* ================= GOOGLE BADGE ================= */
@@ -83,7 +83,7 @@
 .google-badge .stars svg {
   width: 16px;
   height: 16px;
-  fill: #ffb200;
+  fill: yellow;
 }
 .google-badge .count {
   font-weight: 700;

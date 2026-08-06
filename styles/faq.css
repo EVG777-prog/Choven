@@ -63,7 +63,7 @@
   font-family: inherit;
   font-size: 17px;
   font-weight: 800;
-  color: var(--grey-dark);
+  color: var(--onsurface);
 }
 
 .faq-icon {
@@ -86,7 +86,7 @@
   min-height: 0;
   font-size: 15px;
   line-height: 1.6;
-  color: var(--grey-medium);
+  color: var(--grey-dark);
   padding: 0 24px;
 }
 

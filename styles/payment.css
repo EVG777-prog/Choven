@@ -19,7 +19,7 @@
 }
 .payment-note {
   font-size: 13px;
-  color: var(--grey-medium);
+  color: var(--grey-dark);
 }
 
 .payment-grid {
