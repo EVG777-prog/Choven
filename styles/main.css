@@ -96,14 +96,14 @@ section {
   color: var(--white);
 }
 .btn-orange:hover {
-  background: var(--accent);
+  opacity: 0.5;
 }
 .btn-teal {
   background: var(--main);
   color: var(--white);
 }
 .btn-teal:hover {
-  background: var(--main);
+  opacity: 0.5;
 }
 .btn-outline {
   background: var(--white);
@@ -183,10 +183,9 @@ section {
   font-size: 15px;
   font-weight: 500;
   color: var(--grey-dark);
-  opacity: 0.85;
 }
 .main-nav a:hover {
-  opacity: 1;
+  color: var(--main);
 }
 .header-actions {
   display: flex;
@@ -1249,7 +1248,7 @@ section {
   opacity: 0.85;
 }
 .footer-links a:hover {
-  opacity: 1;
+  opacity: 0.5;
 }
 .footer-contacts .phone-row {
   display: flex;

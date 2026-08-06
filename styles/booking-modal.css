@@ -99,7 +99,7 @@
 
 .booking-field.has-error input,
 .booking-field.has-error select {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--blue-1);
   outline-offset: -2px;
   background: var(--grey-light);
 }

@@ -101,6 +101,7 @@
       console.log('Booking form submitted:', data);
 
       // TODO: send `data` to your backend/EmailJS/Google Sheet here
+      sendBookingEmail(data);
 
       form.reset();
       closeModal();
