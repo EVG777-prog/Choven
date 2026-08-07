@@ -5,3 +5,5 @@ const EMAILJS_TOKEN = `-sRJivwCLAK6_wDTd`;
 const EMAILJS_SERVICE_ID = `service_z6p96ae`;
 const EMAILJS_TEMPLATE_ID = `template_455bdyt`;
 const EMAILJS_PUBLIC_KEY = `9NrzRKhONto4fFaOO`;
+const MONO_TOKEN = 'mRGb1l9pB2MKb8l0tXkdfxg';
+const REDIRECT_URL = 'https://shuttleschool.com.ua/';
