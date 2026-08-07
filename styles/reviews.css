@@ -83,11 +83,10 @@
 .google-badge .stars svg {
   width: 16px;
   height: 16px;
-  fill: yellow;
 }
 .google-badge .count {
   font-weight: 700;
-  font-size: 14px;
+  font-size: 16px;
 }
 .google-badge .google-logo {
   display: flex;

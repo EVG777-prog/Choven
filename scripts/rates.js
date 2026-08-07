@@ -7,14 +7,25 @@ document.addEventListener('DOMContentLoaded', async (event) => {
   showRates();
 
   function showRates() {
+    const graphicTop = `
+          <div class="blob" style="width: 150px; height: 150px; top: 0px; right: 0px">
+            <img src="assets/pictures/pricing-graphic_1.svg" alt="Blob" />
+          </div>
+    `;
+    const graphicBottom = `
+          <div class="blob" style="width: 150px; height: 150px; bottom: -85px; right: 0px">
+            <img src="assets/pictures/pricing-graphic_2.svg" alt="Blob" />
+          </div>
+    `;
     ratesList.innerHTML = '';
 
-    rates.forEach((rate) => {
+    rates.forEach((rate, index) => {
       if (rate.details.length > 0) {
         const rateElement = document.createElement('div');
         rateElement.classList.add('price-card');
 
-        rateElement.innerHTML = `  
+        rateElement.innerHTML = `
+                ${index % 2 === 0 ? graphicBottom : graphicTop}
                 <h3>${rate.name}</h3>
                 <div class="freq">${rate.duration}</div>
                 <ul>

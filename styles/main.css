@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
+
 :root {
   --main: #1d5b66;
   --accent: #d56244;
@@ -18,6 +20,10 @@
   --radius-sm: 10px;
   --wrap: 1320px;
   --shadow-soft: 0 20px 40px -24px rgba(22, 48, 44, 0.18);
+
+  /* ---------- Typography scale ---------- */
+  --font-headline: 'Golos Text', sans-serif;
+  --font-body: 'Manrope', sans-serif;
 }
 
 * {
@@ -28,7 +34,9 @@ html {
 }
 body {
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: normal;
   color: var(--grey-dark);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
@@ -48,11 +56,35 @@ ul {
 }
 h1,
 h2,
-h3 {
-  font-family: 'Manrope', sans-serif;
+h3,
+h4 {
+  font-family: var(--font-headline);
+  font-weight: 500;
   margin: 0;
-  line-height: 1.12;
-  letter-spacing: -0.01em;
+}
+h1 {
+  font-size: 58px;
+  line-height: 64px;
+  letter-spacing: 0.02em;
+}
+h2 {
+  font-size: 40px;
+  line-height: normal;
+  letter-spacing: 0.01em;
+}
+h3 {
+  font-size: 24px;
+  line-height: normal;
+  letter-spacing: 0.01em;
+}
+h4 {
+  font-size: 20px;
+  line-height: normal;
+  letter-spacing: 0.01em;
+}
+b,
+strong {
+  font-weight: 700;
 }
 button {
   font-family: inherit;
@@ -71,6 +103,26 @@ section {
   color: var(--main);
 }
 
+/* ---------- Typography utility classes ---------- */
+.body-bold {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: normal;
+}
+.body-text {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: normal;
+}
+.sub-body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: normal;
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
@@ -79,8 +131,10 @@ section {
   gap: 8px;
   padding: 15px 28px;
   border-radius: 100px;
-  font-weight: 700;
-  font-size: 15px;
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: 20px;
+  letter-spacing: 0.01em;
   border: none;
   white-space: nowrap;
   transition:
@@ -113,7 +167,7 @@ section {
 }
 .btn-sm {
   padding: 11px 20px;
-  font-size: 14px;
+  font-size: 16px;
 }
 
 /* ---------- decorative blobs ---------- */
@@ -168,7 +222,7 @@ section {
   flex-shrink: 0;
 }
 .brand-name {
-  font-family: 'Manrope', sans-serif;
+  font-family: var(--font-body);
   font-weight: 800;
   font-size: 19px;
   color: var(--main);
@@ -286,7 +340,7 @@ section {
 .intro-card {
   background: var(--grey-light);
   border-radius: var(--radius-xl);
-  padding: 44px 44px 44px;
+  padding: 25px 25px 25px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -308,7 +362,7 @@ section {
   background: rgba(20, 40, 38, 0.35);
   padding: 8px 12px;
   border-radius: 8px;
-  font-family: 'Inter';
+  font-family: var(--font-body);
 }
 .badge-pill {
   display: inline-flex;
@@ -353,8 +407,11 @@ section {
 }
 
 .intro-title {
-  font-size: 46px;
-  font-weight: 800;
+  font-family: var(--font-headline);
+  font-weight: 500;
+  font-size: 58px;
+  line-height: 64px;
+  letter-spacing: 0.02em;
   color: var(--onsurface);
   margin-top: 26px;
   position: relative;
@@ -452,8 +509,6 @@ section {
   justify-content: center;
 }
 .challenges-card h2 {
-  font-size: 32px;
-  font-weight: 800;
   position: relative;
   z-index: 2;
   color: var(--onsurface);
@@ -489,8 +544,6 @@ section {
 }
 .why-us h2 {
   color: var(--white);
-  font-size: 32px;
-  font-weight: 800;
   position: relative;
   z-index: 2;
 }
@@ -542,8 +595,6 @@ section {
   flex-wrap: wrap;
 }
 .pricing-head h2 {
-  font-size: 32px;
-  font-weight: 800;
   color: var(--onsurface);
 }
 .pricing-head h2 span {
@@ -566,8 +617,6 @@ section {
   flex-direction: column;
 }
 .price-card h3 {
-  font-size: 19px;
-  font-weight: 800;
   position: relative;
   z-index: 2;
   color: var(--onsurface);
@@ -602,8 +651,9 @@ section {
   flex-shrink: 0;
 }
 .price-card .price {
+  font-family: var(--font-headline);
+  font-weight: 500;
   font-size: 24px;
-  font-weight: 800;
   margin-top: 18px;
   position: relative;
   z-index: 2;
@@ -633,7 +683,7 @@ section {
   margin: 0 auto;
   background: var(--main);
   border-radius: var(--radius-xl);
-  padding: 56px;
+  padding: 32px;
   position: relative;
   overflow: hidden;
 }
@@ -646,8 +696,6 @@ section {
 }
 .teachers-head h2 {
   color: var(--white);
-  font-size: 32px;
-  font-weight: 800;
 }
 .carousel-arrows {
   display: flex;
@@ -680,7 +728,7 @@ section {
   scroll-snap-type: x mandatory;
   position: relative;
   z-index: 2;
-
+  /* eslint-disable-next-line css/use-baseline */
   scrollbar-width: none;
   -ms-overflow-style: none;
 }
@@ -776,8 +824,6 @@ section {
   text-align: center;
 }
 .schedule-head h2 {
-  font-size: 32px;
-  font-weight: 800;
   color: var(--onsurface);
 }
 .schedule-head p {
@@ -835,8 +881,6 @@ section {
   z-index: 2;
 }
 .group-head h4 {
-  font-size: 18px;
-  font-weight: 800;
   margin: 0;
   color: var(--grey-dark);
 }
@@ -956,8 +1000,7 @@ section {
   justify-content: center;
 }
 .cert-card h2 {
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 40px;
   position: relative;
   z-index: 2;
   color: var(--onsurface);
@@ -1048,7 +1091,7 @@ section {
   max-width: 340px;
 }
 .cert-logo {
-  font-family: 'Manrope';
+  font-family: var(--font-body);
   font-weight: 800;
   font-size: 30px;
   color: var(--accent);
@@ -1122,7 +1165,6 @@ section {
 }
 .club-card h2 {
   font-size: 30px;
-  font-weight: 800;
   position: relative;
   z-index: 2;
 }
@@ -1147,8 +1189,6 @@ section {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 16px;
-  font-weight: 800;
   margin: 0;
   color: var(--grey-dark);
 }
@@ -1196,7 +1236,7 @@ section {
 }
 .footer-top {
   display: grid;
-  grid-template-columns: 1.3fr 1fr 1.2fr;
+  grid-template-columns: 1fr 0.5fr 1.5fr;
   gap: 30px;
 }
 .footer-brand .brand {
@@ -1394,6 +1434,7 @@ section {
 @media (max-width: 760px) {
   .intro-title {
     font-size: 32px;
+    line-height: 1.15;
   }
   .intro-card,
   .challenges-card,
@@ -1425,6 +1466,6 @@ section {
     flex-direction: column;
   }
   h2 {
-    font-size: 26px !important;
+    font-size: 26px;
   }
 }
