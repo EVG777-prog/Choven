@@ -20,7 +20,7 @@ function showTeachers(teachers) {
 
     const link = teacher.link
       ? `  <span class="yt-icon" onclick="showTeacherVideo('${teacher.link}')">
-             <img src="../assets/icons/icon_youtube.svg" alt="Відео" />
+             <img src="assets/icons/icon_youtube.svg" alt="Відео" />
            </span>
         `
       : '';
