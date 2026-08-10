@@ -28,7 +28,7 @@ function showTeachers(teachers) {
     teacherElement.innerHTML = `
             <div class="teacher-photo">
               <img
-                src="../assets/teachers/${teacher.photo}.webp"
+                src="assets/teachers/${teacher.photo}.webp"
                 alt="Photo of ${teacher.name}"
                 onload="handleImageLoad()"
               />
