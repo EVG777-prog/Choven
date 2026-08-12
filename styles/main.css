@@ -820,23 +820,6 @@ section {
   justify-content: center;
   flex-wrap: wrap;
 }
-.select-fake {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  justify-content: space-between;
-  background: var(--grey-light);
-  border-radius: 100px;
-  padding: 14px 20px;
-  font-size: var(--text-sm);
-  font-weight: 500;
-  min-width: 220px;
-}
-.select-fake svg {
-  width: 14px;
-  height: 14px;
-  color: var(--grey-medium);
-}
 .schedule-grid {
   max-width: var(--wrap);
   margin: 36px auto 0;
@@ -956,6 +939,142 @@ section {
 
 .group-card .status-pill {
   background: var(--level-color);
+}
+
+/* ================= CUSTOM SELECT ================= */
+.select-wrap {
+  position: relative;
+  width: 220px;
+}
+
+.select-wrap > select {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.select-wrap > svg {
+  display: none;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.custom-select__button {
+  width: 100%;
+  height: 60px;
+  padding: 0 22px;
+  border: 1px solid var(--strock);
+  border-radius: 32px;
+  background: var(--grey-light);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--grey-dark);
+
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.custom-select__button:hover,
+.custom-select.open .custom-select__button {
+  border-color: var(--main);
+}
+
+.custom-select__arrow {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.custom-select.open .custom-select__arrow {
+  transform: rotate(180deg);
+}
+
+.custom-select__menu {
+  position: absolute;
+  top: calc(100% + 0px);
+  left: 0;
+  width: 100%;
+  padding: 6px 0;
+  background: var(--grey-light);
+
+  /* Добавляем реальную границу цвета шапки */
+  border: 1px solid var(--main);
+  /* Убираем верхнюю границу для плавного слияния с открытой кнопкой */
+  border-top: none;
+  border-radius: 0 0 18px 18px;
+
+  /* Убираем inset-костыли и оставляем только мягкую внешнюю тень */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+
+  display: none;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.custom-select__menu::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: var(--strock); /* Светло-серая линия */
+  margin: 0 22px 8px 22px; /* Отступы по бокам (22px) и снизу (8px) до первого варианта */
+}
+
+.custom-select.open .custom-select__menu {
+  display: block;
+}
+
+.custom-select__option {
+  margin: 0 4px;
+  padding: 9px 18px;
+
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--grey-dark);
+
+  border-radius: 18px;
+  background: transparent;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+.custom-select__option.selected {
+  color: var(--main);
+}
+.custom-select__option:hover {
+  background: var(--main);
+  color: var(--white);
+}
+
+/* когда dropdown открыт — верхняя часть тоже без нижнего скругления */
+.custom-select.open .custom-select__button {
+  border-radius: 32px 32px 0 0;
+  border-bottom-color: transparent;
+}
+
+/* Второй select — шире/уже как в макете */
+.schedule-filters .select-wrap:first-child {
+  width: 264px;
+}
+
+.schedule-filters .select-wrap:last-child {
+  width: 146px;
 }
 
 /* ================= CERTIFICATES ================= */
@@ -1098,6 +1217,21 @@ section {
   border-bottom: 1.5px solid var(--accent);
   padding-bottom: 8px;
   display: inline-block;
+}
+
+/* MOBILE */
+@media (max-width: 760px) {
+  .schedule-filters {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .schedule-filters .select-wrap,
+  .schedule-filters .select-wrap:first-child,
+  .schedule-filters .select-wrap:last-child {
+    width: 100%;
+  }
 }
 
 /* ================= CLUB ================= */
