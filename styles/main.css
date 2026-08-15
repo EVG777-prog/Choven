@@ -19,6 +19,7 @@
   --radius-md: 14px;
   --radius-sm: 10px;
   --wrap: 1440px;
+  --card-w: 416px;
   --shadow-soft: 0 20px 40px -24px rgba(22, 48, 44, 0.18);
 
   /* ---------- Typography scale ---------- */
@@ -198,8 +199,8 @@ section {
   display: block;
 }
 .yt-icon {
-  width: 20px;
-  height: 20px;
+  width: 24px;
+  height: 24px;
   display: inline-flex;
   cursor: pointer;
   color: var(--accent);
@@ -663,7 +664,7 @@ section {
   margin: 0 auto;
   background: var(--main);
   border-radius: var(--radius-xl);
-  padding: 56px;
+  padding: 32px;
   position: relative;
   overflow: hidden;
 }
@@ -679,11 +680,11 @@ section {
 }
 .carousel-arrows {
   display: flex;
-  gap: 10px;
+  gap: 12px;
 }
 .carousel-arrows button {
-  width: 42px;
-  height: 42px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: var(--white);
   border: 1.5px solid rgba(255, 255, 255, 0.35);
@@ -695,14 +696,14 @@ section {
 .carousel-arrows button:hover {
   background: rgba(255, 255, 255, 0.22);
 }
-.carousel-arrows svg {
-  width: 17px;
-  height: 17px;
+.carousel-arrows img {
+  width: 90%;
+  height: 90%;
 }
 .teachers-grid {
   margin-top: 32px;
   display: flex;
-  gap: 20px;
+  gap: 24px;
   overflow-x: auto;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
@@ -719,13 +720,12 @@ section {
   flex: 0 0 var(--card-w, 320px);
   scroll-snap-align: start;
   background: var(--white);
-  border-radius: var(--radius-md);
-  padding: 14px;
+  border-radius: var(--radius-lg);
+  padding: 16px;
   overflow: hidden;
 }
 .teacher-photo {
-  border-radius: var(--radius-sm);
-  /* height: 320px; */
+  border-radius: var(--radius-md);
   overflow: hidden;
   position: relative;
 }
@@ -736,34 +736,20 @@ section {
   display: block;
 }
 .teacher-info {
-  padding: 16px 8px 8px;
+  padding-top: 16px;
 }
 .teacher-name {
   display: flex;
   align-items: center;
   gap: 8px;
   font-weight: 800;
-  font-size: var(--text-md);
+  font-size: var(--text-2xl);
   color: var(--grey-dark);
-}
-.teacher-name .flag {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: var(--accent);
-  color: var(--white);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-}
-.teacher-name .flag svg {
-  width: 10px;
-  height: 10px;
-  fill: var(--white);
 }
 .teacher-bio {
   margin-top: 8px;
-  font-size: var(--text-xs);
+  margin-bottom: 0;
+  font-size: var(--text-md);
   line-height: 1.55;
   color: var(--grey-dark);
 }
