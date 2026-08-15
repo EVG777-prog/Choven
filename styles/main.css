@@ -15,7 +15,7 @@
   --blue-1: #426bde;
   --blue-2: #264bb3;
   --radius-xl: 32px;
-  --radius-lg: 20px;
+  --radius-lg: 24px;
   --radius-md: 14px;
   --radius-sm: 10px;
   --wrap: 1440px;
@@ -578,29 +578,29 @@ section {
 }
 .pricing-grid {
   max-width: var(--wrap);
-  margin: 36px auto 0;
+  margin: 32px auto 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 .price-card {
   background: var(--grey-light);
   border-radius: var(--radius-lg);
-  padding: 30px 28px 28px;
+  padding: 24px;
   position: relative;
   overflow: hidden;
   display: flex;
   flex-direction: column;
 }
-.price-card h3 {
+.price-card h4 {
   position: relative;
   z-index: 2;
   color: var(--onsurface);
 }
 .price-card .freq {
-  font-size: var(--text-xs);
+  font-size: var(--text-md);
   color: var(--grey-dark);
-  margin-top: 4px;
+  margin-top: 8px;
   position: relative;
   z-index: 2;
 }
@@ -613,41 +613,45 @@ section {
 .price-card li {
   display: flex;
   align-items: flex-start;
-  gap: 10px;
-  font-size: var(--text-sm);
+  gap: 8px;
+  font-size: var(--text-lg);
   color: var(--grey-dark);
-  padding: 6px 0;
+  padding: 4px 0;
 }
 .price-card li .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--main);
-  margin-top: 6px;
+  width: 13px; /* 👈 подгоните размеры под вашу SVG (обычно они больше 8px) */
+  height: 13px;
+  margin-top: 6px; /* или подстройте под новый размер, чтобы было ровно по центру текста */
   flex-shrink: 0;
+
+  /* Вставляем картинку */
+  background-image: url('../assets/icons/icon_list_bullet.svg'); /* Укажите правильный путь */
+  background-size: contain; /* Чтобы картинка поместилась целиком */
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .price-card .price {
   font-family: var(--font-headline);
   font-weight: 500;
   font-size: var(--text-2xl);
-  margin-top: 18px;
+  margin-top: 22px;
   position: relative;
   z-index: 2;
   color: var(--onsurface);
 }
 .price-card .btn {
-  margin-top: 14px;
+  margin-top: 11px;
   align-self: flex-start;
   position: relative;
   z-index: 2;
 }
 .pricing-note {
   max-width: var(--wrap);
-  margin: 30px auto 0;
+  margin: 16px auto 0;
   text-align: center;
-  font-size: var(--text-xs);
+  font-size: var(--text-md);
   color: var(--grey-dark);
-  line-height: 1.7;
+  /* line-height: 1.7; */
 }
 
 /* ================= TEACHERS ================= */
