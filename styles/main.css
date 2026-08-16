@@ -800,7 +800,7 @@ section {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .cert-card h2 {
   position: relative;
@@ -812,40 +812,36 @@ section {
 }
 .cert-card p {
   font-size: var(--text-lg);
-  line-height: 1.65;
+  /* line-height: 1.65; */
   color: var(--grey-dark);
   /* margin-top: 16px; */
   position: relative;
   z-index: 2;
-  margin-bottom: 12px;
-}
-.cert-card p b {
-  color: var(--onsurface);
+  margin: 24px 0 0 0;
 }
 .cert-meta {
   /* margin-top: 16px; */
   position: relative;
   z-index: 2;
+  margin: 4px 0 0 0;
 }
 .cert-meta li {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: var(--text-sm);
+  gap: 8px;
+  font-size: var(--text-lg);
   color: var(--grey-dark);
-  padding: 5px 0;
+  padding: 0;
+  margin: 8px 0 0 0;
 }
-.cert-meta li .dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--main);
+.cert-meta li img {
+  width: 12px;
 }
 .cert-meta li b {
   font-weight: 700;
 }
 .cert-card .btn {
-  margin-top: 12px;
+  margin-top: 24px;
   width: fit-content;
   position: relative;
   z-index: 2;
@@ -924,7 +920,7 @@ section {
 
 /* ================= CLUB ================= */
 .club {
-  padding: 100px 24px 0;
+  padding: 100px 0 0;
 }
 .club-grid {
   max-width: var(--wrap);
