@@ -1,49 +1,276 @@
-/* ================= SCHEDULE FILTERS ================= */
+/* ================= SCHEDULE ================= */
+.schedule {
+  padding: 100px 0;
+}
+.schedule-head {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+.schedule-head h2 {
+  color: var(--onsurface);
+}
+.schedule-head p {
+  margin-top: 12px;
+  font-size: var(--text-lg);
+  color: var(--grey-dark);
+}
 .schedule-filters {
+  max-width: var(--wrap);
+  margin: 16px auto 0;
   display: flex;
-  gap: 12px;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
 }
-
-.select-wrap {
+.schedule-grid {
+  max-width: var(--wrap);
+  margin: 32px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.group-card {
+  background: var(--grey-light);
+  border-radius: var(--radius-lg);
+  padding: 24px;
   position: relative;
+  overflow: hidden;
 }
-.select-wrap select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  cursor: pointer;
-  height: 48px;
-  padding: 0 40px 0 18px;
-  border: 1px solid var(--strock);
-  border-radius: 999px;
-  background: var(--white);
-  font-family: inherit;
-  font-size: 14.5px;
+.group-card .blob {
+  opacity: 0.5;
+}
+.group-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 2;
+}
+.group-head h3 {
+  margin: 0;
   color: var(--grey-dark);
 }
-.select-wrap select:focus {
-  outline: 2px solid var(--main);
-  outline-offset: -2px;
-}
-.select-wrap svg {
-  position: absolute;
-  top: 50%;
-  right: 16px;
-  width: 16px;
-  height: 16px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  color: var(--grey-dark);
-}
-
-.status-pill.status-c {
-  background: var(--accent);
+.status-pill {
+  font-size: var(--text-md);
+  font-weight: 700;
+  padding: 8px 12px;
+  border-radius: 100px;
   color: var(--white);
 }
 
-.schedule-empty {
-  grid-column: 1 / -1;
-  text-align: center;
-  padding: 40px 0;
-  color: var(--grey-medium);
+.group-rows {
+  margin-top: 24px;
+  position: relative;
+  z-index: 2;
+}
+.group-rows li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: var(--text-lg);
+  color: var(--grey-dark);
+  padding: 0 0 8px 0;
+  margin-right: -24px;
+}
+.group-rows li .dot {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  /* margin-top: 2px; */
+}
+.group-rows li b {
+  color: var(--grey-dark);
+  font-weight: 700;
+}
+.group-rows li .mini-flag {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.group-rows li .mini-flag svg {
+  width: 8px;
+  height: 8px;
+  fill: var(--white);
+}
+
+.group-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  font-size: var(--text-xl);
+  font-weight: 700;
+  color: var(--main);
+  position: relative;
+  z-index: 2;
+}
+/* .group-link svg {
+  width: 18px;
+  height: 18px;
+} */
+.group-card.level-free {
+  --level-color: var(--green-0);
+}
+.group-card.level-a1 {
+  --level-color: var(--green-1);
+}
+.group-card.level-a2 {
+  --level-color: var(--green-2);
+}
+.group-card.level-b1 {
+  --level-color: var(--blue-1);
+}
+.group-card.level-b2 {
+  --level-color: var(--blue-2);
+}
+.group-card.level-c1 {
+  --level-color: var(--accent);
+}
+
+.group-card .dot {
+  background: var(--level-color);
+}
+.group-card .group-link,
+.group-card .blob,
+.group-card .group-dot {
+  color: var(--level-color);
+}
+
+.group-card .status-pill {
+  background: var(--level-color);
+}
+
+/* ================= CUSTOM SELECT ================= */
+
+.select-wrap {
+  position: relative;
+  width: 300px;
+}
+
+.select-wrap > select {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.select-wrap > svg {
+  display: none;
+}
+
+.custom-select {
+  position: relative;
+  width: 100%;
+  z-index: 10;
+}
+
+.custom-select__button {
+  width: 300px;
+  height: 41px;
+  padding: 8px 16px;
+  border: 1px solid var(--strock);
+  border-radius: var(--radius-xl);
+  background: var(--grey-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  color: var(--grey-dark);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.custom-select__button:hover,
+.custom-select.open .custom-select__button {
+  border-color: var(--main);
+}
+
+.custom-select__arrow {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+
+  /* Подключаем ваш SVG-файл */
+  background-image: url('../assets/icons/icon-arrow-down.svg');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 16px; /* Отрегулируйте размер стрелки по макету */
+}
+
+.custom-select.open .custom-select__arrow {
+  transform: rotate(180deg);
+}
+
+.custom-select__menu {
+  position: absolute;
+  top: calc(100% + 0px);
+  left: 0;
+  width: 100%;
+  padding: 6px 0;
+  background: var(--grey-light);
+
+  /* Добавляем реальную границу цвета шапки */
+  border: 1px solid var(--main);
+  /* Убираем верхнюю границу для плавного слияния с открытой кнопкой */
+  border-top: none;
+  border-radius: 0 0 18px 18px;
+
+  /* Убираем inset-костыли и оставляем только мягкую внешнюю тень */
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+
+  display: none;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.custom-select__menu::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: var(--strock); /* Светло-серая линия */
+  margin: 0 22px 8px 22px; /* Отступы по бокам (22px) и снизу (8px) до первого варианта */
+}
+
+.custom-select.open .custom-select__menu {
+  display: block;
+}
+
+.custom-select__option {
+  margin: 0 4px;
+  padding: 8px 16px;
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  line-height: 1.4;
+  color: var(--grey-dark);
+  border-radius: var(--radius-lg);
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.custom-select__option.selected {
+  color: var(--main);
+}
+
+.custom-select__option:hover {
+  background: var(--main);
+  color: var(--white);
+}
+
+/* когда dropdown открыт — верхняя часть тоже без нижнего скругления */
+.custom-select.open .custom-select__button {
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  border-bottom-color: transparent;
 }
