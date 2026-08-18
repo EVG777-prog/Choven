@@ -2,36 +2,33 @@
 .payment-page {
   max-width: var(--wrap);
   margin: 0 auto;
-  padding: 24px 24px 100px;
+  padding: 64px 0 0 0;
 }
 
 .payment-head {
+  height: 48px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-between;
   gap: 16px;
-  margin: 8px 0 32px;
+  margin: 0 0 32px 0;
 }
-.payment-head h1 {
-  font-size: 34px;
-  font-weight: 800;
-  color: var(--grey-dark);
-}
+
 .payment-note {
-  font-size: 13px;
+  font-size: var(--text-md);
   color: var(--grey-dark);
+  letter-spacing: 0;
 }
 
 .payment-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+  gap: 24px;
 }
 
 .payment-card {
   background: var(--grey-light);
-  /* border: 1px solid #eceeed; */
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   padding: 24px;
   position: relative;
   overflow: hidden;
@@ -40,8 +37,8 @@
   position: absolute;
   top: 0;
   right: 0;
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   opacity: 1;
   z-index: 0;
 }
@@ -53,20 +50,18 @@
   z-index: 1;
 }
 .payment-card h3 {
-  font-size: 17px;
-  font-weight: 800;
-  color: var(--grey-dark);
+  color: var(--onsurface);
 }
 .payment-sub {
-  margin-top: 4px;
-  font-size: 13.5px;
-  color: var(--grey-medium);
+  margin-top: 8px;
+  font-size: var(--text-md);
+  color: var(--grey-dark);
 }
 .payment-count {
-  margin-top: 16px;
-  font-size: 14px;
+  margin-top: 15px;
+  font-size: var(--text-lg);
   font-weight: 600;
-  color: var(--grey-dark);
+  color: var(--onsurface);
 }
 .payment-row {
   margin-top: 18px;
@@ -76,9 +71,7 @@
   gap: 12px;
 }
 .payment-price {
-  font-size: 20px;
-  font-weight: 800;
-  color: var(--grey-dark);
+  color: var(--onsurface);
 }
 
 /* ================= RESPONSIVE ================= */

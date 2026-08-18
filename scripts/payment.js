@@ -13,16 +13,19 @@ document.addEventListener('DOMContentLoaded', async (event) => {
       const rateElement = document.createElement('div');
       rateElement.classList.add('payment-card');
 
+      // убираем скобки из duration, если они есть
+      const duration = rate.duration.replace(/^\((.*)\)$/, '$1');
+
       rateElement.innerHTML = `  
         <div class="blob">
           <img src="../assets/pictures/payment-card-graphic.svg" alt="Payment card graphic" />
         </div>
         <h3>${rate.name}</h3>
-        <div class="payment-sub">${rate.duration}</div>
+        <div class="payment-sub">${duration}</div>
         <div class="payment-count">${rate.quantity} ${pluralizeLessons(rate.quantity)}</div>
         <div class="payment-row">
-            <div class="payment-price">${rate.price} грн</div>
-            <a href="#" class="btn btn-teal btn-sm">Оплатити</a>
+            <h3 class="payment-price">${rate.price} грн</h3>
+            <a href="#" class="btn btn-teal">Оплатити</a>
         </div>
       `;
 
