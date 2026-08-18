@@ -189,7 +189,7 @@ function scheduleRenderGroupCards() {
 
       const badgeLabel = isFromScratch
         ? row._formattedStart
-          ? `З нуля (старт ${row._formattedStart})`
+          ? `З нуля 📅 ${row._formattedStart}`
           : 'З нуля'
         : row._normLevel;
 

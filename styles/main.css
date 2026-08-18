@@ -948,65 +948,60 @@ section {
 .club-card {
   background: var(--grey-light);
   border-radius: var(--radius-xl);
-  padding: 48px;
+  padding: 32px;
   position: relative;
   overflow: hidden;
+  color: var(--grey-dark);
 }
 .club-card h2 {
   position: relative;
   z-index: 2;
+  color: var(--main);
+  margin-bottom: 24px;
 }
 .club-card h2 span {
-  font-weight: 600;
+  /* font-weight: 600; */
   color: var(--onsurface);
 }
 .club-card > p {
-  font-size: var(--text-sm);
-  line-height: 1.65;
-  color: var(--grey-dark);
-  margin-top: 16px;
+  font-size: var(--text-lg);
+  margin: 12px 0;
   position: relative;
   z-index: 2;
 }
 .club-item {
-  margin-top: 22px;
+  /* margin-top: 24px; */
+  padding: 6px 0 0 0;
   position: relative;
   z-index: 2;
-}
-.club-item h4 {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
   margin: 0;
-  color: var(--grey-dark);
+  font-weight: 700;
 }
-.club-item h4 img {
-  width: 10px;
-  height: 10px;
+.club-item img {
+  width: 12px;
+  height: 12px;
 }
-.club-item p {
-  margin-top: 8px;
-  font-size: var(--text-sm);
-  line-height: 1.6;
-  color: var(--grey-dark);
-}
+
 .club-tags {
   display: flex;
-  gap: 10px;
-  margin-top: 12px;
+  gap: 12px;
+  margin-top: -6px;
+  margin-bottom: 12px;
   flex-wrap: wrap;
-  color: var(--grey-dark);
 }
 .club-tags span {
   background: var(--white);
   border: 1.5px solid var(--strock);
   border-radius: 100px;
-  padding: 7px 14px;
-  font-size: var(--text-2xs);
-  font-weight: 600;
+  padding: 8px 12px;
+  font-size: var(--text-md);
+  /* font-weight: 600; */
 }
 .club-card .btn {
-  margin-top: 26px;
+  margin-top: 12px;
   position: relative;
   z-index: 2;
 }
