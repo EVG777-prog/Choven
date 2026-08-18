@@ -16,7 +16,7 @@
   --blue-2: #264bb3;
   --radius-xl: 32px;
   --radius-lg: 24px;
-  --radius-md: 14px;
+  --radius-md: 16px;
   --radius-sm: 10px;
   --wrap: 1440px;
   --card-w: 416px;
@@ -1008,7 +1008,7 @@ section {
 
 /* ================= FOOTER ================= */
 .site-footer {
-  padding: 100px 0;
+  padding: 100px 0 0 0;
 }
 .footer-inner {
   max-width: var(--wrap);
@@ -1103,12 +1103,12 @@ section {
 /* ================= BREADCRUMBS ================= */
 .breadcrumbs {
   max-width: var(--wrap);
-  margin: 32px auto 0;
+  margin: 24px auto 0;
   padding: 0;
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: var(--text-xs);
+  font-size: var(--text-md);
   color: var(--grey-medium);
 }
 .breadcrumbs a {
