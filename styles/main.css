@@ -42,6 +42,7 @@
 }
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 body {
   margin: 0;
@@ -52,6 +53,7 @@ body {
   color: var(--grey-dark);
   background: var(--white);
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 /* Скрываем скроллбар для Chrome, Safari и Opera */
 body::-webkit-scrollbar {
@@ -670,11 +672,11 @@ body.menu-open {
   /* font-weight: 500; */
 }
 
-/* ================= PRICING ================= */
-.pricing {
+/* ================= rates ================= */
+.rates {
   padding: 100px 0 0;
 }
-.pricing-head {
+.rates-head {
   max-width: var(--wrap);
   margin: 0 auto;
   display: flex;
@@ -683,20 +685,20 @@ body.menu-open {
   gap: 20px;
   flex-wrap: wrap;
 }
-.pricing-head h2 {
+.rates-head h2 {
   color: var(--onsurface);
 }
-.pricing-head h2 span {
+.rates-head h2 span {
   color: var(--main);
 }
-.pricing-grid {
+.rates-grid {
   max-width: var(--wrap);
   margin: 32px auto 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 }
-.price-card {
+.rate-card {
   background: var(--grey-light);
   border-radius: var(--radius-lg);
   padding: 24px;
@@ -705,25 +707,25 @@ body.menu-open {
   display: flex;
   flex-direction: column;
 }
-.price-card h4 {
+.rate-card h4 {
   position: relative;
   z-index: 2;
   color: var(--onsurface);
 }
-.price-card .freq {
+.rate-card .freq {
   font-size: var(--text-md);
   color: var(--grey-dark);
   margin-top: 8px;
   position: relative;
   z-index: 2;
 }
-.price-card ul {
+.rate-card ul {
   margin-top: 20px;
   position: relative;
   z-index: 2;
   flex: 1;
 }
-.price-card li {
+.rate-card li {
   display: flex;
   align-items: flex-start;
   gap: 8px;
@@ -731,7 +733,7 @@ body.menu-open {
   color: var(--grey-dark);
   padding: 4px 0;
 }
-.price-card li .dot {
+.rate-card li .dot {
   width: 13px; /* 👈 подгоните размеры под вашу SVG (обычно они больше 8px) */
   height: 13px;
   margin-top: 6px; /* или подстройте под новый размер, чтобы было ровно по центру текста */
@@ -743,7 +745,7 @@ body.menu-open {
   background-repeat: no-repeat;
   background-position: center;
 }
-.price-card .price {
+.rate-card .price {
   font-family: var(--font-headline);
   font-weight: 500;
   font-size: var(--text-2xl);
@@ -752,19 +754,34 @@ body.menu-open {
   z-index: 2;
   color: var(--onsurface);
 }
-.price-card .btn {
+.rate-card .btn {
   margin-top: 11px;
   align-self: flex-start;
   position: relative;
   z-index: 2;
 }
-.pricing-note {
+.rates-note {
   max-width: var(--wrap);
   margin: 16px auto 0;
   text-align: center;
   font-size: var(--text-md);
   color: var(--grey-dark);
-  /* line-height: 1.7; */
+}
+.rates-pay-mobile {
+  display: none;
+}
+
+.rate-card .blob-top {
+  width: 180px;
+  height: 140px;
+  top: 0;
+  right: 0;
+}
+.rate-card .blob-bottom {
+  width: 180px;
+  height: 140px;
+  bottom: -35px;
+  right: 0;
 }
 
 /* ================= TEACHERS ================= */
@@ -1258,7 +1275,7 @@ body.menu-open {
     order: 1;
   }
   .why-grid,
-  .pricing-grid,
+  .rates-grid,
   .teachers-grid {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -1355,7 +1372,7 @@ body.menu-open {
   }
   .challenges,
   .why-us,
-  .pricing,
+  .rates,
   .teachers,
   .schedule,
   .certificates,
@@ -1374,14 +1391,9 @@ body.menu-open {
   }
   .feature-pills,
   .why-grid,
-  .pricing-grid,
   .teachers-grid,
   .schedule-grid {
     grid-template-columns: 1fr;
-  }
-  .pricing-head {
-    flex-direction: column;
-    align-items: flex-start;
   }
 
   .footer-bottom {
@@ -1487,8 +1499,86 @@ body.menu-open {
     width: 36px;
     height: 36px;
     font-size: var(--text-lg);
+    margin: 0;
   }
   .why-card p {
     font-size: var(--text-md);
+    line-height: 1.39;
+  }
+
+  /* ================= rates ================= */
+  .rates-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+  .rates-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-top: 20px;
+    padding-bottom: 4px;
+    margin-right: -16px;
+  }
+  .rates-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .rate-card {
+    border-radius: 16px;
+    padding: 16px;
+    flex: 0 0 83%;
+    scroll-snap-align: start;
+  }
+  .rate-card .freq {
+    font-size: 14px;
+    margin-top: 4px;
+  }
+  .rate-card ul {
+    margin-top: 12px;
+  }
+  .rate-card li {
+    gap: 8px;
+    font-size: var(--text-md);
+    padding: 4px 0;
+  }
+  .rate-card li .dot {
+    width: 12px; /* 👈 подгоните размеры под вашу SVG (обычно они больше 8px) */
+    height: 12px;
+    margin-top: 6px; /* или подстройте под новый размер, чтобы было ровно по центру текста */
+  }
+  .rate-card .price {
+    font-size: 22px;
+    margin-top: 12px;
+  }
+  .rate-card .btn {
+    margin-top: 12px;
+    width: 100%;
+  }
+  .rates-note {
+    /* gap: 2px; */
+    margin-top: 8px;
+    font-size: 14px;
+  }
+  .rates-note br {
+    display: none;
+  }
+  .rates-pay-desktop {
+    display: none;
+  }
+  .rates-pay-mobile {
+    display: inline-flex;
+    width: 100%;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  .rate-card .blob-top {
+    /* width: 120px; */
+    height: 150px;
+    right: -85px;
   }
 }

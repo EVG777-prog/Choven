@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', async (event) => {
   // заполнение тарифов
-  const ratesList = document.querySelector('.pricing-grid');
+  const ratesList = document.querySelector('.rates-grid');
 
   const rates = await getRates();
 
@@ -8,13 +8,13 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
   function showRates() {
     const graphicTop = `
-          <div class="blob" style="width: 180px; height: 140px; top: 0px; right: 0px">
-            <img style="width: 100%; height: 100%;" src="assets/pictures/pricing-graphic_1.svg" alt="Blob" />
+          <div class="blob blob-top"">
+            <img style="width: 100%; height: 100%;" src="assets/pictures/rates-graphic_1.svg" alt="Blob" />
           </div>
     `;
     const graphicBottom = `
-          <div class="blob" style="width: 180px; height: 140px; bottom: -35px; right: 0px">
-            <img style="width: 100%; height: 100%;" src="assets/pictures/pricing-graphic_2.svg" alt="Blob" />
+          <div class="blob blob-bottom">
+            <img style="width: 100%; height: 100%;" src="assets/pictures/rates-graphic_2.svg" alt="Blob" />
           </div>
     `;
     ratesList.innerHTML = '';
@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     rates.forEach((rate, index) => {
       if (rate.details.length > 0) {
         const rateElement = document.createElement('div');
-        rateElement.classList.add('price-card');
+        rateElement.classList.add('rate-card');
 
         // убираем скобки из duration, если они есть
         const duration = rate.duration.replace(/^\((.*)\)$/, '$1');
