@@ -274,3 +274,73 @@
   border-radius: var(--radius-lg) var(--radius-lg) 0 0;
   border-bottom-color: transparent;
 }
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 760px) {
+  .schedule {
+    padding-top: 56px;
+  }
+  .schedule-head p {
+    margin-top: 8px;
+    font-size: var(--text-md);
+  }
+
+  .schedule-filters {
+    margin: 16px 0 0;
+    gap: 12px;
+    justify-content: space-between;
+  }
+  .select-wrap {
+    width: 48%;
+  }
+  .custom-select__button {
+    width: 100%;
+    height: 40px;
+    padding: 8px 16px;
+    padding-right: 12px;
+    font-size: var(--text-md);
+  }
+  .custom-select__arrow {
+    width: 28px;
+    height: 28px;
+  }
+
+  .schedule-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-top: 20px;
+    margin-right: -16px;
+    padding-bottom: 4px;
+  }
+  .schedule-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .group-card {
+    flex: 0 0 83%;
+    scroll-snap-align: start;
+    padding: 16px;
+    border-radius: 16px;
+  }
+  .status-pill {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+  .group-rows {
+    margin-top: 16px;
+  }
+  .group-rows li {
+    font-size: var(--text-md);
+    margin-right: 0;
+    height: 30px;
+  }
+  .group-link {
+    font-size: var(--text-lg);
+    margin-top: 8px;
+  }
+}
