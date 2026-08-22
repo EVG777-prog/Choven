@@ -2,9 +2,9 @@
 
 const SCHEDULE_TIME_FILTER_LABELS = {
   all: 'Будь-який час',
-  morning: 'Ранковий час (до 12)',
-  day: 'Денний час (12–17)',
-  evening: 'Вечірній час (після 17)',
+  morning: 'Ранковий час',
+  day: 'Денний час',
+  evening: 'Вечірній час',
 };
 const SCHEDULE_TIME_FILTER_ORDER = ['morning', 'day', 'evening'];
 const SCHEDULE_LEVEL_ORDER = ['з нуля', 'A1', 'A2', 'B1', 'B2', 'C1', 'C2'];

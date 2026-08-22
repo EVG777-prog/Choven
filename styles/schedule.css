@@ -305,6 +305,10 @@
     height: 28px;
   }
 
+  .custom-select__option {
+    font-size: var(--text-md);
+  }
+
   .schedule-grid {
     display: flex;
     gap: 12px;
@@ -337,10 +341,14 @@
   .group-rows li {
     font-size: var(--text-md);
     margin-right: 0;
-    height: 30px;
+    /* height: 30px; */
   }
   .group-link {
     font-size: var(--text-lg);
     margin-top: 8px;
+  }
+  .yt-icon {
+    width: 22px;
+    height: 22px;
   }
 }
