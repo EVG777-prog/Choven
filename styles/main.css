@@ -1581,4 +1581,42 @@ body.menu-open {
     height: 150px;
     right: -85px;
   }
+
+  /* ================= TEACHERS ================= */
+  .teachers-inner {
+    border-radius: var(--radius-lg);
+  }
+
+  .carousel-arrows button {
+    width: 32px;
+    height: 32px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+  }
+  .carousel-arrows button img {
+    max-width: 110%;
+    width: 110%;
+    /* height: 150%; */
+  }
+  .teachers-grid {
+    margin-top: 20px;
+    gap: 24px;
+  }
+  .teacher-card {
+    border-radius: 16px;
+  }
+  .teacher-photo {
+    border-radius: 12px;
+  }
+  .teacher-info {
+    padding-top: 8px;
+  }
+  .teacher-name {
+    gap: 8px;
+    font-size: 22px;
+  }
+  .teacher-bio {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.35;
+  }
 }
