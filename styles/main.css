@@ -1172,6 +1172,16 @@ body.menu-open {
   color: var(--grey-medium);
 }
 
+.footer-btn-mobile {
+  display: none;
+}
+.footer-btn-desktop {
+  display: flex;
+}
+.footer-phone-icon {
+  display: none;
+}
+
 /* ================= BREADCRUMBS ================= */
 .breadcrumbs {
   max-width: var(--wrap);
@@ -1659,5 +1669,63 @@ body.menu-open {
   .club-card .btn {
     margin-top: 8px;
     width: 100%;
+  }
+
+  /* ================= FOOTER ================= */
+  .footer-inner {
+    border-radius: 20px;
+  }
+  .footer-top {
+    gap: 0;
+  }
+  .footer-brand .brand {
+    width: 50px;
+    height: 50px;
+  }
+  .footer-tagline {
+    margin-top: 12px;
+    font-size: var(--text-md);
+  }
+  .pay-icons {
+    gap: 8px;
+    margin-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .footer-col h5 {
+    font-size: var(--text-lg);
+    margin: 32px 0 16px 0;
+  }
+  .footer-links {
+    gap: 24px;
+    grid-template-columns: 1fr 2fr;
+  }
+  .footer-links a {
+    font-size: var(--text-md);
+  }
+  .footer-contacts .phone-row {
+    display: none;
+  }
+  .footer-contacts .icon-row {
+    margin: 12px 0 0 0;
+    justify-content: flex-start;
+  }
+  .footer-divider {
+    margin: 24px 0;
+  }
+  .footer-bottom {
+    gap: 24px;
+    font-size: var(--text-md);
+  }
+
+  .footer-btn-mobile {
+    display: flex;
+    margin-top: 24px;
+  }
+  .footer-btn-desktop {
+    display: none;
+  }
+  .footer-phone-icon {
+    display: flex;
   }
 }

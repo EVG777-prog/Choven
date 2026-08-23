@@ -23,7 +23,7 @@
           <img src="../assets/icons/icon-logo.svg" alt="Logo" />
         </div>
         <nav class="main-nav">
-          <a href="../index.html" class="active">Головна</a>
+          <a href="../index.html#" class="active">Головна</a>
           <a href="../index.html#schedule">Розклад</a>
           <a href="../index.html#rates">Вартість</a>
           <a href="reviews.html">Відгуки</a>
@@ -65,28 +65,114 @@
               <img src="../assets/icons/icon_email_normal.svg" alt="Email" />
             </a>
           </div>
-          <a href="payment.html" class="btn pay-pill"
-            >Внести оплату
+          <a href="payment.html" class="btn pay-pill">
+            Внести оплату
             <img src="../assets/icons/icon_visa.svg" alt="VISA" />
           </a>
           <a href="../index.html#booking" class="btn btn-orange"
             >Записатись на урок</a
           >
         </div>
-        <button class="burger" aria-label="Меню">
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path d="M3 6h18M3 12h18M3 18h18" />
-          </svg>
+
+        <!-- бургер теперь toggle'ит .open на .mobile-menu -->
+        <button class="burger" aria-label="Меню" id="burgerBtn">
+          <img src="../assets/icons/icon-menu.svg" alt="Menu" />
         </button>
       </div>
     </header>
+
+    <!-- ================= MOBILE MENU ================= -->
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-top">
+        <div class="mobile-menu-brand">
+          <img
+            src="../assets/icons/icon-logo.svg"
+            alt="Logo"
+            class="mobile-menu-logo-icon"
+          />
+          <span>Choven</span>
+        </div>
+        <button
+          class="mobile-menu-close"
+          id="mobileMenuClose"
+          aria-label="Закрити"
+        >
+          <img src="../assets/icons/icon-close.svg" alt="Close" />
+        </button>
+      </div>
+
+      <nav class="mobile-menu-nav">
+        <a href="../index.html#" class="mobile-menu-link">
+          <h3>Головна</h3>
+          <img src="../assets/icons/burger-arrow-right.svg" alt="Arrow" />
+        </a>
+        <a href="../index.html#schedule" class="mobile-menu-link">
+          <h3>Розклад</h3>
+          <img src="../assets/icons/burger-arrow-right.svg" alt="Arrow" />
+        </a>
+        <a href="../index.html#rates" class="mobile-menu-link">
+          <h3>Вартість</h3>
+          <img src="../assets/icons/burger-arrow-right.svg" alt="Arrow" />
+        </a>
+        <a href="reviews.html" class="mobile-menu-link">
+          <h3>Відгуки</h3>
+          <img src="../assets/icons/burger-arrow-right.svg" alt="Arrow" />
+        </a>
+        <a href="faq.html" class="mobile-menu-link">
+          <h3>FAQ</h3>
+          <img src="../assets/icons/burger-arrow-right.svg" alt="Arrow" />
+        </a>
+      </nav>
+
+      <div class="mobile-menu-bottom">
+        <div class="mobile-menu-socials">
+          <a class="icon-btn" href="tel:+380970007996" aria-label="Телефон">
+            <img src="../assets/icons/icon_phone_normal.svg" alt="Phone" />
+          </a>
+          <a
+            class="icon-btn"
+            href="https://www.instagram.com/shuttle_school/?r=nametag"
+            aria-label="Instagram"
+            target="_blank"
+          >
+            <img
+              src="../assets/icons/icon_instagram_normal.svg"
+              alt="Instagram"
+            />
+          </a>
+          <a
+            class="icon-btn"
+            href="https://telegram.me/shuttle_school1"
+            aria-label="Telegram"
+            target="_blank"
+          >
+            <img
+              src="../assets/icons/icon_telegram_normal.svg"
+              alt="Telegram"
+            />
+          </a>
+          <a
+            class="icon-btn"
+            href="mailto:shuttleschooll@gmail.com"
+            aria-label="Email"
+            target="_blank"
+          >
+            <img src="../assets/icons/icon_email_normal.svg" alt="Email" />
+          </a>
+        </div>
+
+        <a href="../index.html#booking" class="btn btn-orange mobile-menu-btn"
+          >Записатись на урок</a
+        >
+        <a
+          href="payment.html"
+          class="btn pay-pill mobile-menu-btn mobile-menu-pay"
+        >
+          Внести оплату
+          <img src="../assets/icons/icon_visa.svg" alt="VISA" />
+        </a>
+      </div>
+    </div>
 
     <!-- ================= BREADCRUMBS ================= -->
     <nav class="breadcrumbs" aria-label="breadcrumb">
@@ -320,11 +406,16 @@
               />
               <img src="../assets/icons/icon_Visa_black.svg" alt="Visa" />
             </div>
+            <a
+              href="../index.html#booking"
+              class="btn btn-orange footer-btn-mobile"
+              >Записатись на урок</a
+            >
           </div>
           <div class="footer-col">
             <h5>Навігація</h5>
             <div class="footer-links">
-              <a href="../index.html">Головна</a>
+              <a href="../index.html#">Головна</a>
               <a href="reviews.html">Відгуки</a>
               <a href="../index.html#schedule">Розклад</a>
               <a href="faq.html">FAQ</a>
@@ -338,6 +429,13 @@
               +38 (097) 000 79 96
             </a>
             <div class="icon-row">
+              <a
+                class="icon-btn footer-phone-icon"
+                href="tel:+380970007996"
+                aria-label="Телефон"
+              >
+                <img src="../assets/icons/icon_phone_normal.svg" alt="Phone" />
+              </a>
               <a
                 class="icon-btn"
                 target="_blank"
@@ -371,7 +469,9 @@
             </div>
           </div>
           <div class="footer-cta-wrap">
-            <a href="../index.html#booking" class="btn btn-orange"
+            <a
+              href="../index.html#booking"
+              class="btn btn-orange footer-btn-desktop"
               >Записатись на урок</a
             >
           </div>
@@ -477,7 +577,9 @@
 
           <p class="booking-agreement">
             *Натискаючи на кнопку "Залишити заявку" ви погоджуєтеся з умовами
-            <a href="#" target="_blank" rel="noopener">Публічної оферти</a>
+            <a href="../index.html#" target="_blank" rel="noopener"
+              >Публічної оферти</a
+            >
           </p>
 
           <button type="submit" class="btn btn-orange booking-submit">
