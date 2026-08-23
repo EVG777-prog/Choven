@@ -53,15 +53,16 @@ function fitTeacherCards() {
   if (!grid || !grid.children.length) return;
 
   const gap = 20;
-  const minCardWidth = 300; // минимально допустимая ширина карточки
   const containerWidth = grid.clientWidth;
 
-  // сколько карточек минимальной ширины влезет целиком
-  let count = Math.floor((containerWidth + gap) / (minCardWidth + gap));
-  count = Math.max(1, count);
-
-  // растягиваем карточки, чтобы заполнить всю ширину без остатка
-  const cardWidth = (containerWidth - gap * (count - 1)) / count;
+  let cardWidth;
+  if (window.innerWidth < 420) {
+    cardWidth = containerWidth; // на самых узких экранах карточка = вся доступная ширина
+  } else if (containerWidth >= 900) {
+    cardWidth = 416;
+  } else {
+    cardWidth = 320;
+  }
 
   grid.style.setProperty('--card-w', `${cardWidth}px`);
   grid.dataset.step = cardWidth + gap; // сохраняем шаг для стрелок

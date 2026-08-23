@@ -248,12 +248,60 @@ function scheduleRenderGroupCards() {
       `;
     })
     .join('');
+
+  equalizeScheduleRows();
 }
 
 function scheduleRenderAll() {
   scheduleRenderTimeFilter();
   scheduleRenderLevelFilter();
   scheduleRenderGroupCards();
+}
+
+function equalizeScheduleRows() {
+  const grid = document.querySelector('.schedule-grid');
+  if (!grid) return;
+
+  const cards = Array.from(grid.querySelectorAll('.group-card'));
+  if (cards.length < 2) return;
+
+  // на мобилке сетка превращается в горизонтальный скролл (flex),
+  // там карточки не выстроены в ряды — выравнивание не нужно и может сломать вёрстку
+  const isGridLayout = getComputedStyle(grid).display === 'grid';
+  if (!isGridLayout) return;
+
+  // сбрасываем предыдущие подгонки перед пересчётом
+  cards.forEach((card) => {
+    card.querySelectorAll('.group-rows li').forEach((li) => {
+      li.style.minHeight = '';
+    });
+  });
+
+  // группируем карточки по их фактическому вертикальному положению (ряду)
+  const rows = new Map();
+  cards.forEach((card) => {
+    const top = card.offsetTop;
+    if (!rows.has(top)) rows.set(top, []);
+    rows.get(top).push(card);
+  });
+
+  rows.forEach((rowCards) => {
+    if (rowCards.length < 2) return;
+
+    const liCount = rowCards[0].querySelectorAll('.group-rows li').length;
+
+    for (let i = 0; i < liCount; i++) {
+      let maxHeight = 0;
+      rowCards.forEach((card) => {
+        const li = card.querySelectorAll('.group-rows li')[i];
+        if (li) maxHeight = Math.max(maxHeight, li.offsetHeight);
+      });
+      rowCards.forEach((card) => {
+        const li = card.querySelectorAll('.group-rows li')[i];
+        if (li) li.style.minHeight = `${maxHeight}px`;
+      });
+    }
+  });
 }
 
 // --- Init ---------------------------------------------------------------
@@ -309,5 +357,12 @@ document.addEventListener('DOMContentLoaded', async () => {
   domFilterLevel?.addEventListener('change', (e) => {
     scheduleFilterState.level = e.target.value;
     scheduleRenderAll();
+  });
+
+  // выравниваем высоту строк в карточках при изменении ширины окна
+  let scheduleResizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(scheduleResizeTimeout);
+    scheduleResizeTimeout = setTimeout(equalizeScheduleRows, 150);
   });
 });
