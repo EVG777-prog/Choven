@@ -16,15 +16,15 @@
   position: relative;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  background: var(--main);
   align-self: start;
 }
 .faq-photo img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
   position: relative;
   z-index: 1;
+  object-fit: cover;
 }
 
 .faq-title {
@@ -84,13 +84,15 @@
   min-height: 0;
   font-size: var(--text-lg);
   color: var(--grey-dark);
+  padding: 0 16px; /* горизонтальный padding теперь всегда есть, не скачет */
+  transition: padding-bottom 0.25s ease;
 }
 
 .faq-item.is-open .faq-answer {
   grid-template-rows: 1fr;
 }
 .faq-item.is-open .faq-answer p {
-  padding: 0 16px 16px;
+  padding-bottom: 16px; /* только это анимируется */
 }
 .faq-item.is-open .faq-question {
   color: var(--main);
@@ -107,11 +109,43 @@
   }
 }
 @media (max-width: 620px) {
-  .faq-title {
-    font-size: 28px;
+  .faq-page {
+    padding: 32px 0 0 0;
   }
+
+  .faq-grid {
+    gap: 24px;
+  }
+
+  .faq-photo {
+    border-radius: var(--radius-lg);
+    height: 250px;
+    min-height: 0; /* перебиваем min-height: 340px из блока на 1100px */
+  }
+  .faq-photo img {
+    object-position: center 15%; /* было по умолчанию center center (50% 50%) */
+  }
+
+  .faq-title {
+    margin: 0 0 20px 0;
+  }
+
+  .faq-list {
+    gap: 12px;
+  }
+
   .faq-question {
-    font-size: 15px;
-    padding: 16px 18px;
+    height: auto;
+    gap: 12px;
+  }
+
+  .faq-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .faq-answer p {
+    font-size: var(--text-md);
+    margin-top: -4px;
   }
 }
