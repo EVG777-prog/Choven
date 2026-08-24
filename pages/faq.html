@@ -535,12 +535,6 @@
     </div>
 
     <script>
-      // mobile burger toggles nav + actions as a dropdown panel
-      document.querySelector('.burger')?.addEventListener('click', function () {
-        document.querySelector('.main-nav')?.classList.toggle('open');
-        document.querySelector('.header-actions')?.classList.toggle('open');
-      });
-
       // FAQ accordion — one item open at a time
       document.querySelectorAll('.faq-question').forEach((btn) => {
         btn.addEventListener('click', () => {
@@ -562,5 +556,6 @@
     ></script>
 
     <script src="../scripts/booking-modal.js"></script>
+    <script src="../scripts/burger.js"></script>
   </body>
 </html>

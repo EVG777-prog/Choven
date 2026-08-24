@@ -104,10 +104,71 @@
   }
 }
 @media (max-width: 620px) {
-  .reviews-grid {
-    grid-template-columns: 1fr;
+  .reviews-page {
+    padding: 32px 0 0 0;
   }
   .reviews-title {
-    font-size: 28px;
+    margin: 0 0 20px;
+  }
+  .reviews-grid {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    margin-right: -16px;
+    padding-bottom: 4px;
+  }
+  .reviews-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .review-card {
+    border-radius: 16px;
+    padding: 16px;
+    flex: 0 0 83%;
+    scroll-snap-align: start;
+  }
+
+  .review-text {
+    font-size: var(--text-md);
+    line-height: 1.38;
+  }
+
+  .review-author {
+    margin-top: 16px;
+  }
+  .review-avatar {
+    width: 52px;
+    height: 52px;
+  }
+  .review-name {
+    margin-bottom: 4px;
+  }
+  .review-level {
+    font-size: 14px;
+  }
+
+  /* ================= GOOGLE BADGE ================= */
+  .google-badge {
+    margin: 20px auto 0;
+  }
+  .google-badge .stars {
+    width: 88px;
+    height: 24px;
+    gap: 2px;
+  }
+  .google-badge .stars svg {
+    width: 16px;
+    height: 16px;
+  }
+  .google-badge .count {
+    /* font-weight: 700; */
+    font-size: var(--text-md);
+  }
+  .google-badge .google-logo {
+    width: 73px;
   }
 }

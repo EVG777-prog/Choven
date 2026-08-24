@@ -1209,10 +1209,6 @@ body.menu-open {
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 1100px) {
-  .mobile-menu {
-    display: none;
-  }
-
   .intro-grid,
   .challenges-grid,
   .club-grid,
@@ -1727,5 +1723,12 @@ body.menu-open {
   }
   .footer-phone-icon {
     display: flex;
+  }
+
+  /* ================= BREADCRUMBS ================= */
+  .breadcrumbs {
+    margin: 16px auto 0;
+    gap: 8px;
+    font-size: 14px;
   }
 }

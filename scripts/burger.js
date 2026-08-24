@@ -4,10 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenuClose = document.getElementById('mobileMenuClose');
 
   function openMenu() {
+    console.log('Open');
+    console.log('burgerBtn', burgerBtn);
+    console.log('mobileMenu', mobileMenu);
+    console.log('mobileMenuClose', mobileMenuClose);
     mobileMenu.classList.add('open');
     document.body.classList.add('menu-open');
   }
   function closeMenu() {
+    console.log('Close');
     mobileMenu.classList.remove('open');
     document.body.classList.remove('menu-open');
   }
