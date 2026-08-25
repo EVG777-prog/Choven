@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../styles/main.css" />
     <link rel="stylesheet" href="../styles/payment.css" />
     <link rel="stylesheet" href="../styles/booking-modal.css" />
+    <link rel="stylesheet" href="../styles/floating-buttons.css" />
   </head>
   <body>
     <!-- ================= HEADER ================= -->
@@ -593,6 +594,25 @@
       </div>
     </div>
 
+    <!-- ================= TELEGRAM BUTTON ================= -->
+    <a
+      href="https://telegram.me/czoven"
+      target="_blank"
+      class="chat-btn floating-btn"
+    >
+      <img src="../assets/icons/icon_chat.svg" alt="Chat" />
+    </a>
+
+    <!-- ================= BUTTON UP ================= -->
+    <a
+      id="toTopBtn"
+      class="to-top-btn floating-btn"
+      href="#top"
+      aria-label="Up"
+    >
+      <img src="../assets/icons/icon_up.svg" alt="Up" />
+    </a>
+
     <script
       type="text/javascript"
       src="https://cdn.emailjs.com/dist/email.min.js"
@@ -602,6 +622,7 @@
     <script src="../data/settings.js"></script>
     <script src="../scripts/getDataGoogleSheet.js"></script>
     <script src="../scripts/burger.js"></script>
+    <script src="../scripts/floating-buttons.js"></script>
     <script src="../scripts/payment.js"></script>
   </body>
 </html>
