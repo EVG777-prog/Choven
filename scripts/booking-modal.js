@@ -96,6 +96,7 @@
         name: form.name.value.trim(),
         contact: form.contact.value.trim(),
         level: form.level.value,
+        format: form.format.value,
       };
 
       console.log('Booking form submitted:', data);

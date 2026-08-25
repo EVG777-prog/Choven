@@ -19,9 +19,9 @@
     <!-- ================= HEADER ================= -->
     <header class="site-header">
       <div class="header-inner">
-        <div class="brand">
+        <a href="../index.html#" class="brand">
           <img src="../assets/icons/icon-logo.svg" alt="Logo" />
-        </div>
+        </a>
         <nav class="main-nav">
           <a href="../index.html#" class="active">Головна</a>
           <a href="../index.html#schedule">Розклад</a>
@@ -31,12 +31,12 @@
         </nav>
         <div class="header-actions">
           <div class="icon-row">
-            <a class="icon-btn" href="tel:+380970007996" aria-label="Телефон">
+            <a class="icon-btn" href="tel:+420704485331" aria-label="Телефон">
               <img src="../assets/icons/icon_phone_normal.svg" alt="Phone" />
             </a>
             <a
               class="icon-btn"
-              href="https://www.instagram.com/shuttle_school/?r=nametag"
+              href="https://www.instagram.com/czoven"
               aria-label="Instagram"
               target="_blank"
             >
@@ -47,7 +47,7 @@
             </a>
             <a
               class="icon-btn"
-              href="https://telegram.me/shuttle_school1"
+              href="https://telegram.me/czoven"
               aria-label="Telegram"
               target="_blank"
             >
@@ -126,12 +126,12 @@
 
       <div class="mobile-menu-bottom">
         <div class="mobile-menu-socials">
-          <a class="icon-btn" href="tel:+380970007996" aria-label="Телефон">
+          <a class="icon-btn" href="tel:+420704485331" aria-label="Телефон">
             <img src="../assets/icons/icon_phone_normal.svg" alt="Phone" />
           </a>
           <a
             class="icon-btn"
-            href="https://www.instagram.com/shuttle_school/?r=nametag"
+            href="https://www.instagram.com/czoven"
             aria-label="Instagram"
             target="_blank"
           >
@@ -142,7 +142,7 @@
           </a>
           <a
             class="icon-btn"
-            href="https://telegram.me/shuttle_school1"
+            href="https://telegram.me/czoven"
             aria-label="Telegram"
             target="_blank"
           >
@@ -368,9 +368,9 @@
       <div class="footer-inner">
         <div class="footer-top">
           <div class="footer-brand">
-            <div class="brand">
+            <a href="../index.html#" class="brand">
               <img src="../assets/icons/icon-logo.svg" alt="Logo" />
-            </div>
+            </a>
             <p class="footer-tagline">Човен – онлайн школа чеської мови</p>
             <div class="pay-icons">
               <img
@@ -409,14 +409,14 @@
           </div>
           <div class="footer-col footer-contacts">
             <h5>Контакти</h5>
-            <a class="phone-row" href="tel:+380970007996">
+            <a class="phone-row" href="tel:+420704485331">
               <img src="../assets/icons/icon_phone.svg" alt="Phone" />
               +38 (097) 000 79 96
             </a>
             <div class="icon-row">
               <a
                 class="icon-btn footer-phone-icon"
-                href="tel:+380970007996"
+                href="tel:+420704485331"
                 aria-label="Телефон"
               >
                 <img src="../assets/icons/icon_phone_normal.svg" alt="Phone" />
@@ -424,7 +424,7 @@
               <a
                 class="icon-btn"
                 target="_blank"
-                href="https://www.instagram.com/shuttle_school/?r=nametag"
+                href="https://www.instagram.com/czoven"
                 aria-label="Instagram"
               >
                 <img
@@ -434,7 +434,7 @@
               </a>
               <a
                 class="icon-btn"
-                href="https://telegram.me/shuttle_school1"
+                href="https://telegram.me/czoven"
                 aria-label="Telegram"
                 target="_blank"
               >
@@ -531,35 +531,56 @@
               />
             </div>
           </div>
-
-          <div class="booking-field" data-field="level">
-            <label for="booking-level"
-              >Ви раніше вивчали чеську мову?<span class="req">*</span></label
-            >
-            <div class="booking-select-wrap">
-              <select id="booking-level" name="level" required>
-                <option value="none" selected>Ні, потрібно з нуля</option>
-                <option value="basic">Так, базовий рівень (A1–A2)</option>
-                <option value="intermediate">
-                  Так, середній рівень (B1–B2)
-                </option>
-                <option value="advanced">
-                  Так, високий рівень (C1 і вище)
-                </option>
-              </select>
-              <svg
-                class="booking-select-icon"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
+          <div class="booking-row">
+            <div class="booking-field" data-field="level">
+              <label for="booking-level"
+                >Ви раніше вивчали чеську мову?<span class="req">*</span></label
               >
-                <path d="m6 9 6 6 6-6" />
-              </svg>
+              <div class="booking-select-wrap">
+                <select id="booking-level" name="level" required>
+                  <option value="none" selected>Ні, потрібно з нуля</option>
+                  <option value="basic">Так, базовий рівень (A1–A2)</option>
+                  <option value="intermediate">
+                    Так, середній рівень (B1–B2)
+                  </option>
+                  <option value="advanced">
+                    Так, високий рівень (C1 і вище)
+                  </option>
+                </select>
+                <svg
+                  class="booking-select-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
+            </div>
+            <div class="booking-field" data-field="level">
+              <label for="booking-level"
+                >Формат<span class="req">*</span></label
+              >
+              <div class="booking-select-wrap">
+                <select id="booking-format" name="format" required>
+                  <option value="Мінігрупа" selected>Мінігрупа</option>
+                  <option value="Індивідуальні">Індивідуальні заняття</option>
+                </select>
+                <svg
+                  class="booking-select-icon"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                >
+                  <path d="m6 9 6 6 6-6" />
+                </svg>
+              </div>
             </div>
           </div>
-
           <p class="booking-agreement">
             *Натискаючи на кнопку "Залишити заявку" ви погоджуєтеся з умовами
             <a href="#" target="_blank" rel="noopener">Публічної оферти</a>
