@@ -1093,7 +1093,7 @@
             <h5>Контакти</h5>
             <a class="phone-row" href="tel:+420704485331">
               <img src="assets/icons/icon_phone.svg" alt="Phone" />
-              +38 (097) 000 79 96
+              +42 (070) 448 53 31
             </a>
             <div class="icon-row">
               <a
@@ -1147,20 +1147,23 @@
             href="assets/documents/offer-students.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            >Публічна оферта</a
           >
-          <a
-            href="assets/documents/offer-teachers.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Публічна оферта (викладачі)</a
-          >
+            Публічна оферта
+          </a>
           <a
             href="assets/documents/rules.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            >Правила проведення занять</a
           >
+            Правила проведення занять
+          </a>
+          <a
+            href="assets/documents/privacy-policy.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Політика конфеденційності
+          </a>
         </div>
       </div>
     </footer>
@@ -1194,30 +1197,49 @@
                 type="text"
                 id="booking-name"
                 name="name"
-                placeholder="Введіть ваше ім'я"
+                placeholder="Владислава"
                 required
+                pattern="^[A-Za-zА-Яа-яЁёЇїІіЄєҐґ'\-`’ʼ\s]+$"
+                title="Лише літери (латиниця або кирилиця), пробіл, апостроф або дефіс"
               />
             </div>
-            <div class="booking-field" data-field="contact">
+            <div class="booking-field" data-field="phone">
               <label for="booking-contact"
-                >Ваш телефон або нік в Telegram<span class="req">*</span></label
+                >Номер телефону<span
+                  class="req"
+                  >*</span
+                ></label
               >
               <input
-                type="text"
-                id="booking-contact"
-                name="contact"
-                placeholder="Введіть ваші контактні дані"
+                type="tel"
+                id="booking-phone"
+                name="phone"
+                placeholder="+380632345678"
                 required
+                pattern="^\+?\d{6,15}$"
+                title="Тільки цифри, опціонально перший знак '+' (6-15 цифр)"
               />
             </div>
           </div>
           <div class="booking-row">
-            <div class="booking-field" data-field="level">
-              <label for="booking-level"
+            <div class="booking-field" data-field="telegram">
+              <label for="booking-telegram"
+                >Ваш нік в Telegram<span class="req">*</span></label
+              >
+              <input
+                type="tel"
+                id="booking-telegram"
+                name="telegram"
+                placeholder=""@vlada.vlada"
+                required
+              />
+            </div>
+            <div class="booking-field" data-field="experience">
+              <label for="booking-experience"
                 >Ви раніше вивчали чеську мову?<span class="req">*</span></label
               >
               <div class="booking-select-wrap">
-                <select id="booking-level" name="level" required>
+                <select id="booking-experience" name="experience" required>
                   <option value="none" selected>Ні, потрібно з нуля</option>
                   <option value="basic">Так, базовий рівень (A1–A2)</option>
                   <option value="intermediate">
@@ -1239,8 +1261,9 @@
                 </svg>
               </div>
             </div>
-            <div class="booking-field" data-field="level">
-              <label for="booking-level"
+          </div>
+            <div class="booking-field" data-field="format">
+              <label for="booking-format"
                 >Формат<span class="req">*</span></label
               >
               <div class="booking-select-wrap">
@@ -1260,7 +1283,6 @@
                 </svg>
               </div>
             </div>
-          </div>
           <p class="booking-agreement">
             *Натискаючи на кнопку "Залишити заявку" ви погоджуєтеся з умовами
             <a href="#" target="_blank" rel="noopener">Публічної оферти</a>
@@ -1292,19 +1314,6 @@
       <img src="assets/icons/icon_up.svg" alt="Up" />
     </a>
 
-    <script>
-      // teacher carousel: simple left/right scroll on the grid
-      const tGrid = document.querySelector('.teachers-grid');
-      document.querySelectorAll('.carousel-arrows button').forEach((btn, i) => {
-        btn.addEventListener('click', () => {
-          if (!tGrid) return;
-          const dir = i === 0 ? -1 : 1;
-          const step = parseFloat(tGrid.dataset.step) || 340;
-          tGrid.scrollBy({ left: dir * step, behavior: 'smooth' });
-        });
-      });
-    </script>
-
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <!-- <script src="scripts/saveUTM.js"></script> -->
     <!-- <script src="scripts/burger-menu.js"></script> -->
@@ -1319,6 +1328,7 @@
     <script src="scripts/burger.js"></script>
     <script src="scripts/booking-modal.js"></script>
     <script src="scripts/floating-buttons.js"></script>
+    <script src="scripts/header.js"></script>
     <script src="scripts/rates.js"></script>
     <script src="scripts/teachers.js"></script>
     <script src="scripts/schedule.js"></script>

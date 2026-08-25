@@ -9,6 +9,17 @@ document.addEventListener('DOMContentLoaded', async (event) => {
 
   fitTeacherCards();
   window.addEventListener('resize', fitTeacherCards);
+
+  // teacher carousel: simple left/right scroll on the grid
+  const tGrid = document.querySelector('.teachers-grid');
+  document.querySelectorAll('.carousel-arrows button').forEach((btn, i) => {
+    btn.addEventListener('click', () => {
+      if (!tGrid) return;
+      const dir = i === 0 ? -1 : 1;
+      const step = parseFloat(tGrid.dataset.step) || 340;
+      tGrid.scrollBy({ left: dir * step, behavior: 'smooth' });
+    });
+  });
 });
 
 function showTeachers(teachers) {

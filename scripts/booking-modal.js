@@ -94,9 +94,11 @@
 
       const data = {
         name: form.name.value.trim(),
-        contact: form.contact.value.trim(),
-        level: form.level.value,
+        phone: form.phone.value.trim(),
+        telegram: form.telegram.value.trim(),
+        experience: form.experience.value,
         format: form.format.value,
+        language: 'Чеська',
       };
 
       console.log('Booking form submitted:', data);

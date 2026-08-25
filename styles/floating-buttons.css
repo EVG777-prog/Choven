@@ -13,14 +13,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #ff9bab; /* базовый розовый фон */
+  background-color: var(--accent); /* базовый розовый фон */
   border-radius: 50%; /* круг */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s, transform 0.3s;
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
 }
 
 .chat-btn:hover {
-  background-color: #f4667d; /* фон при наведении */
+  opacity: 0.9;
   transform: scale(1.1); /* слегка увеличиваем */
 }
 
@@ -32,7 +34,7 @@
 }
 
 .to-top-btn {
-  color: white; /* цвет по умолчанию */
+  color: var(--main); /* цвет по умолчанию */
   transition: color 0.3s;
   bottom: 20px;
   left: 20px;
@@ -40,6 +42,9 @@
   height: 50px;
   cursor: pointer;
   display: none; /* скрыта по умолчанию */
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
 }
 
 .to-top-btn img {
@@ -50,12 +55,15 @@
   filter: invert(33%) sepia(13%) saturate(670%) hue-rotate(153deg)
     brightness(91%) contrast(90%);
   /* это для твоего стартового #5a808a */
+  transition:
+    background-color 0.3s,
+    transform 0.3s;
 }
 
 .to-top-btn:hover img {
-  filter: brightness(0) saturate(100%) invert(67%) sepia(27%) saturate(606%)
-    hue-rotate(15deg) brightness(94%) contrast(92%);
+  opacity: 0.9;
   /* это для целевого #d9ae4f */
+  transform: scale(1.1); /* слегка увеличиваем */
 }
 
 .hidden {
