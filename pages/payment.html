@@ -526,10 +526,7 @@
             </div>
             <div class="booking-field" data-field="phone">
               <label for="booking-contact"
-                >Номер телефону<span
-                  class="req"
-                  >*</span
-                ></label
+                >Номер телефону<span class="req">*</span></label
               >
               <input
                 type="tel"
@@ -548,10 +545,10 @@
                 >Ваш нік в Telegram<span class="req">*</span></label
               >
               <input
-                type="tel"
+                type="text"
                 id="booking-telegram"
                 name="telegram"
-                placeholder=""@vlada.vlada"
+                placeholder="@vlada.vlada"
                 required
               />
             </div>
@@ -583,27 +580,25 @@
               </div>
             </div>
           </div>
-            <div class="booking-field" data-field="format">
-              <label for="booking-format"
-                >Формат<span class="req">*</span></label
+          <div class="booking-field" data-field="format">
+            <label for="booking-format">Формат<span class="req">*</span></label>
+            <div class="booking-select-wrap">
+              <select id="booking-format" name="format" required>
+                <option value="Мінігрупа" selected>Мінігрупа</option>
+                <option value="Індивідуальні">Індивідуальні заняття</option>
+              </select>
+              <svg
+                class="booking-select-icon"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
               >
-              <div class="booking-select-wrap">
-                <select id="booking-format" name="format" required>
-                  <option value="Мінігрупа" selected>Мінігрупа</option>
-                  <option value="Індивідуальні">Індивідуальні заняття</option>
-                </select>
-                <svg
-                  class="booking-select-icon"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                >
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
-              </div>
+                <path d="m6 9 6 6 6-6" />
+              </svg>
             </div>
+          </div>
           <p class="booking-agreement">
             *Натискаючи на кнопку "Залишити заявку" ви погоджуєтеся з умовами
             <a href="#" target="_blank" rel="noopener">Публічної оферти</a>
